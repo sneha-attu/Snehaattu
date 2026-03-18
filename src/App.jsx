@@ -1049,21 +1049,6 @@ function AchievementsAndCerts() {
           ))}
         </div>
  
-        {/* ── Divider: Metrics ── */}
-        <div className="sep" style={{marginTop:"2rem"}}>
-          <div className="sep-line" style={{ background:"linear-gradient(90deg,transparent,var(--b2))" }} />
-          <span className="sep-lbl">// Performance Metrics</span>
-          <div className="sep-line" style={{ background:"linear-gradient(90deg,var(--b2),transparent)" }} />
-        </div>
- 
-        <div className="ach-grid" style={{marginTop:"1.5rem"}}>
-          {ACH_METRICS.map((a,i) => (
-            <div key={a.title} className="achcard fade" style={{ transitionDelay:`${i*.05}s` }}>
-              <span className="ach-ico">{a.icon}</span>
-              <div><div className="ach-val">{a.val}</div><div className="ach-tit">{a.title}</div><div className="ach-desc">{a.desc}</div></div>
-            </div>
-          ))}
-        </div>
  
       </div>
     </section>
@@ -1118,31 +1103,15 @@ function Contact() {
 }
 
 function ContactForm() {
-  const [status, setStatus] = useState("idle");
   const [form, setForm] = useState({ name:"", email:"", subject:"", message:"" });
-
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-
-  const handleSubmit = async () => {
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
-    setStatus("sending");
-    try {
-      const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({ name: form.name, email: form.email, subject: form.subject, message: form.message }),
-      });
-      if (res.ok) {
-        setStatus("success");
-        setForm({ name:"", email:"", subject:"", message:"" });
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
+  const handleSend = () => {
+    const { name, email, subject, message } = form;
+    if (!name.trim() || !message.trim()) return;
+    const body = encodeURIComponent(`Hi Sneha,\n\n${message}\n\nBest,\n${name}${email ? `\n${email}` : ""}`);
+    const sub = subject.trim() ? encodeURIComponent(subject) : encodeURIComponent(`Message from ${name}`);
+    window.location.href = `mailto:snehaattu9408@gmail.com?subject=${sub}&body=${body}`;
   };
-
   const inputStyle = {
     width:"100%", background:"var(--surface2)", border:"1px solid var(--b2)",
     borderRadius:"8px", padding:".7rem 1rem", color:"var(--text)",
@@ -1154,67 +1123,42 @@ function ContactForm() {
   };
   const focus = e => e.target.style.borderColor = "var(--cyan)";
   const blur  = e => e.target.style.borderColor = "var(--b2)";
-  const disabled = !form.name.trim() || !form.email.trim() || !form.message.trim() || status === "sending";
-
+  const disabled = !form.name.trim() || !form.message.trim();
   return (
-    <div style={{
-      width:"100%", marginTop:"2.5rem",
-      background:"var(--card)", border:"1px solid var(--b2)",
-      borderRadius:"var(--r)", padding:"2rem",
-    }}>
+    <div style={{ width:"100%", marginTop:"2.5rem", background:"var(--card)", border:"1px solid var(--b2)", borderRadius:"var(--r)", padding:"2rem" }}>
       <div style={{ fontFamily:"var(--mono)", fontSize:".7rem", color:"var(--cyan)", letterSpacing:".1em", textTransform:"uppercase", marginBottom:"1.4rem" }}>
         // Send Me a Message
       </div>
-
-      {status === "success" ? (
-        <div style={{ textAlign:"center", padding:"2.5rem 1rem" }}>
-          <div style={{ fontSize:"2.5rem", marginBottom:"1rem" }}>✅</div>
-          <div style={{ fontWeight:700, fontSize:"1.1rem", color:"var(--emerald)", marginBottom:".5rem" }}>Message sent!</div>
-          <p style={{ color:"var(--muted2)", fontSize:".9rem" }}>Thanks for reaching out — I'll get back to you soon.</p>
-          <button className="btn-s" style={{ marginTop:"1.5rem" }} onClick={() => setStatus("idle")}>Send another →</button>
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1rem", marginBottom:"1rem" }}>
+        <div>
+          <label style={labelStyle}>Your Name *</label>
+          <input name="name" value={form.name} onChange={handleChange} placeholder="Jane Doe" style={inputStyle} onFocus={focus} onBlur={blur} />
         </div>
-      ) : (
-        <>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1rem", marginBottom:"1rem" }}>
-            <div>
-              <label style={labelStyle}>Your Name *</label>
-              <input name="name" value={form.name} onChange={handleChange} placeholder="Jane Doe"
-                style={inputStyle} onFocus={focus} onBlur={blur} />
-            </div>
-            <div>
-              <label style={labelStyle}>Your Email *</label>
-              <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="jane@example.com"
-                style={inputStyle} onFocus={focus} onBlur={blur} />
-            </div>
-          </div>
-          <div style={{ marginBottom:"1rem" }}>
-            <label style={labelStyle}>Subject</label>
-            <input name="subject" value={form.subject} onChange={handleChange} placeholder="Project collab, hiring, or just saying hi!"
-              style={inputStyle} onFocus={focus} onBlur={blur} />
-          </div>
-          <div style={{ marginBottom:"1.4rem" }}>
-            <label style={labelStyle}>Message *</label>
-            <textarea name="message" value={form.message} onChange={handleChange}
-              placeholder="Hi Sneha, I'd love to talk about..." rows={5}
-              style={{ ...inputStyle, resize:"vertical", lineHeight:"1.6" }}
-              onFocus={focus} onBlur={blur} />
-          </div>
-          {status === "error" && (
-            <p style={{ fontFamily:"var(--mono)", fontSize:".75rem", color:"#f87171", marginBottom:"1rem" }}>
-              // Something went wrong — please try again or email directly.
-            </p>
-          )}
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"1rem" }}>
-            <span style={{ fontFamily:"var(--mono)", fontSize:".68rem", color:"var(--muted)" }}>
-              // Powered by Formspree · arrives directly in my inbox
-            </span>
-            <button className="btn-p" onClick={handleSubmit} disabled={disabled}
-              style={{ fontSize:".9rem", padding:".75rem 2rem", opacity: disabled ? 0.5 : 1, cursor: disabled ? "not-allowed" : "pointer" }}>
-              {status === "sending" ? "Sending…" : "Send Message →"}
-            </button>
-          </div>
-        </>
-      )}
+        <div>
+          <label style={labelStyle}>Your Email</label>
+          <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="jane@example.com" style={inputStyle} onFocus={focus} onBlur={blur} />
+        </div>
+      </div>
+      <div style={{ marginBottom:"1rem" }}>
+        <label style={labelStyle}>Subject</label>
+        <input name="subject" value={form.subject} onChange={handleChange} placeholder="Project collab, hiring, or just saying hi!" style={inputStyle} onFocus={focus} onBlur={blur} />
+      </div>
+      <div style={{ marginBottom:"1.4rem" }}>
+        <label style={labelStyle}>Message *</label>
+        <textarea name="message" value={form.message} onChange={handleChange}
+          placeholder="Hi Sneha, I'd love to talk about..." rows={5}
+          style={{ ...inputStyle, resize:"vertical", lineHeight:"1.6" }}
+          onFocus={focus} onBlur={blur} />
+      </div>
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"1rem" }}>
+        <span style={{ fontFamily:"var(--mono)", fontSize:".68rem", color:"var(--muted)" }}>
+          // Opens your email app with message pre-filled
+        </span>
+        <button className="btn-p" onClick={handleSend} disabled={disabled}
+          style={{ fontSize:".9rem", padding:".75rem 2rem", opacity: disabled ? 0.5 : 1, cursor: disabled ? "not-allowed" : "pointer" }}>
+          Send Message →
+        </button>
+      </div>
     </div>
   );
 }
