@@ -1102,7 +1102,7 @@ function Contact() {
 }
 
 function ContactForm() {
-  const FORM_ID = "xbdzqaqj"; // ← Replace with your Formspree ID e.g. "xpwzgkrb"
+  const FORM_ID = "https://formspree.io/f/xbdzqaqj"; // ← Replace with your Formspree ID e.g. "xpwzgkrb"
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
   const [form, setForm] = useState({ name:"", email:"", subject:"", message:"" });
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
