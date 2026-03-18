@@ -651,14 +651,51 @@ function Hero() {
               {["React","Node.js"].map(t => <span key={t} className="pill pe">{t}</span>)}
             </div>
           </div>
-          <div className="metrics-col fade" style={{ transitionDelay:".2s" }}>
-            {METRICS.map(m => (
-              <div key={m.tag} className="mc">
-                <div className="mc-head"><span className="mc-tag">{m.tag}</span><span>{m.icon}</span></div>
-                <div className="mc-val">{m.val}</div>
-                <div className="mc-desc">{m.desc}</div>
-              </div>
-            ))}
+ 
+          {/* RIGHT SIDE — Photo + Metrics */}
+          <div className="fade" style={{ transitionDelay:".2s", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem" }}>
+ 
+            {/* PHOTO */}
+            <div style={{
+              position:"relative", width:"200px", height:"200px", flexShrink:0,
+            }}>
+              <div style={{
+                position:"absolute", inset:"-3px",
+                borderRadius:"50%",
+                background:"linear-gradient(135deg, var(--cyan), var(--violet))",
+                zIndex:0,
+              }}/>
+              <img
+                src="/photo.png"
+                alt="Sneha Attu"
+                style={{
+                  position:"relative", zIndex:1,
+                  width:"100%", height:"100%",
+                  borderRadius:"50%",
+                  objectFit:"cover",
+                  objectPosition:"top",
+                  border:"3px solid var(--bg)",
+                }}
+              />
+              <div style={{
+                position:"absolute", bottom:"8px", right:"8px", zIndex:2,
+                background:"var(--emerald)", borderRadius:"50%",
+                width:"18px", height:"18px",
+                border:"2px solid var(--bg)",
+                boxShadow:"0 0 10px var(--emerald)",
+              }}/>
+            </div>
+ 
+            {/* METRICS */}
+            <div className="metrics-col" style={{ width:"100%" }}>
+              {METRICS.map(m => (
+                <div key={m.tag} className="mc">
+                  <div className="mc-head"><span className="mc-tag">{m.tag}</span><span>{m.icon}</span></div>
+                  <div className="mc-val">{m.val}</div>
+                  <div className="mc-desc">{m.desc}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -1031,3 +1068,4 @@ export default function App() {
     </>
   );
 }
+ 
