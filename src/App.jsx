@@ -267,15 +267,18 @@ nav.slim{padding:.65rem 3rem}
 .mob-overlay{position:fixed;inset:0;z-index:240;background:rgba(0,0,0,.5);backdrop-filter:blur(2px)}
 @media(max-width:900px){
   .nav-links{display:none}
-  .desktop-only{display:none!important}
+  .nav-contact{display:none!important}
   .hamburger{display:flex}
   nav{padding:.8rem 1.5rem}
   nav.slim{padding:.6rem 1.5rem}
-  .hero-inner{grid-template-columns:1fr!important}
-  #hero{padding-top:6rem}
+  .hero-inner{grid-template-columns:1fr!important;gap:2rem}
+  #hero{padding-top:5rem}
   .hero-photo-desktop{display:none!important}
-  .hero-photo-mobile{display:block}
-  .hero-inner > div:last-child{display:none!important}
+  .hero-photo-mobile{display:block!important}
+  .hero-right-col{display:none!important}
+  .about-grid,.sd-grid,.proj-grid{grid-template-columns:1fr}
+  .cc-grid{grid-template-columns:1fr!important}
+  .contact-inner{padding:1.5rem!important}
 }
 @media(min-width:901px){
   .hero-photo-mobile{display:none!important}
@@ -319,7 +322,7 @@ section{position:relative;z-index:1;scroll-margin-top:72px}
  
 /* HERO */
 #hero{min-height:100vh;display:flex;align-items:center;padding-top:5rem}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);
   font-size:.7rem;color:var(--emerald);border:1px solid rgba(52,211,153,.3);
   padding:.3rem .9rem;border-radius:99px;margin-bottom:1.4rem}
@@ -663,7 +666,7 @@ function Nav({ slim }) {
             <li key={id}><a href={`#${id}`} onClick={(e) => go(id, e)}>{label}</a></li>
           ))}
         </ul>
-        <button className="nav-contact desktop-only" onClick={(e) => go("contact", e)}>Contact Me →</button>
+        <button className="nav-contact" onClick={(e) => go("contact", e)}>Contact Me →</button>
         <button className="hamburger" onClick={() => setOpen(o => !o)} aria-label="Menu">
           <span className={open ? "hbar hbar-top open" : "hbar hbar-top"} />
           <span className={open ? "hbar hbar-mid open" : "hbar hbar-mid"} />
@@ -717,7 +720,7 @@ function Hero() {
           </div>
 
           {/* RIGHT — Photo (desktop only) + Metrics */}
-          <div className="fade" style={{ transitionDelay:".2s", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem" }}>
+          <div className="fade hero-right-col" style={{ transitionDelay:".2s", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem", paddingTop:"5.5rem" }}>
             <div className="hero-photo-desktop" style={{ position:"relative", width:"220px", height:"220px", flexShrink:0 }}>
               <div style={{ position:"absolute", inset:"-4px", borderRadius:"50%", background:"linear-gradient(135deg,var(--cyan),var(--violet))", zIndex:0 }}/>
               <div style={{ position:"absolute", inset:"0", borderRadius:"50%", background:"var(--bg)", zIndex:0 }}/>
@@ -1023,7 +1026,7 @@ function Contact() {
           <div className="lbl">Get In Touch</div>
           <h2 className="ttl" style={{ fontSize:"clamp(2rem,4vw,3.5rem)",marginBottom:"1rem" }}>Let's <span className="hl">Connect</span>.</h2>
           <p className="sub" style={{ margin:"0 auto" }}>Whether it's a project, a collaboration, or just a conversation about tech and ideas — I'm always open to connecting.</p>
-          <div className="cc-grid" style={{gridTemplateColumns:"repeat(4,1fr)"}}>
+          <div className="cc-grid">
             <a href="mailto:snehaattu9408@gmail.com" className="cc">
               <span className="cc-icon" style={{color:"var(--cyan)"}}>
                 <svg width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
