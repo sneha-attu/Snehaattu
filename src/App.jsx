@@ -1102,7 +1102,7 @@ function Contact() {
 }
 
 function ContactForm() {
-  const FORM_ID = "https://formspree.io/f/xbdzqaqj"; // ← Replace with your Formspree ID e.g. "xpwzgkrb"
+  const FORM_ID = "xbdzqaqj"; // ← Replace with your Formspree ID e.g. "xpwzgkrb"
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
   const [form, setForm] = useState({ name:"", email:"", subject:"", message:"" });
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
@@ -1110,7 +1110,7 @@ function ContactForm() {
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
     setStatus("sending");
     try {
-      const res = await fetch(`https://formspree.io/f/xbdzqaqj`, {
+      const res = await fetch(`xbdzqaqj`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(form),
