@@ -1,7 +1,20 @@
-node_modules
-dist
-.env
-.env.local
-.DS_Store
-*.log
- 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+.venv/
+hand_calculator_env/
+env.bak/
+venv.bak/
+
+# Dist
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
