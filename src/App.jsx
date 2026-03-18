@@ -324,7 +324,7 @@ section{position:relative;z-index:1;scroll-margin-top:72px}
 .btn-s:hover{border-color:var(--cyan);color:var(--cyan)}
  
 /* HERO */
-#hero{min-height:100vh;display:flex;align-items:flex-start;padding-top:7rem}
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:5rem;padding-bottom:3rem}
 .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:start;width:100%}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);
   font-size:.7rem;color:var(--emerald);border:1px solid rgba(52,211,153,.3);
@@ -761,6 +761,14 @@ function Hero() {
               {["PostHog","Google Ads","JIRA"].map(t => <span key={t} className="pill pv">{t}</span>)}
               {["React","Node.js"].map(t => <span key={t} className="pill pe">{t}</span>)}
             </div>
+            <div style={{ display:"flex", gap:"2rem", marginTop:"2rem", paddingTop:"1.5rem", borderTop:"1px solid var(--b2)" }}>
+              {[["2+","Years Building"],["4+","Hackathons"],["99.9%","SLA Uptime"]].map(([val,lbl]) => (
+                <div key={lbl}>
+                  <div style={{ fontFamily:"var(--mono)", fontSize:"1.4rem", fontWeight:700, color:"var(--cyan)", lineHeight:1 }}>{val}</div>
+                  <div style={{ fontFamily:"var(--mono)", fontSize:".62rem", color:"var(--muted)", textTransform:"uppercase", letterSpacing:".08em", marginTop:".3rem" }}>{lbl}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* RIGHT — Photo (desktop only) + Metrics */}
@@ -772,7 +780,7 @@ function Hero() {
               <div style={{ position:"absolute", bottom:"18px", right:"18px", zIndex:2, background:"var(--emerald)", borderRadius:"50%", width:"22px", height:"22px", border:"3px solid var(--bg)", boxShadow:"0 0 14px var(--emerald)" }}/>
             </div>
             <div className="metrics-col" style={{ width:"100%" }}>
-              {METRICS.map(m => (
+              {METRICS.slice(0,2).map(m => (
                 <div key={m.tag} className="mc">
                   <div className="mc-head"><span className="mc-tag">{m.tag}</span><span>{m.icon}</span></div>
                   <div className="mc-val">{m.val}</div>
@@ -1256,4 +1264,3 @@ export default function App() {
     </>
   );
 }
- 
