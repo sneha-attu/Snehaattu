@@ -232,21 +232,49 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:
  
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;
-  justify-content:space-between;padding:1rem 4rem;
-  background:rgba(2,4,8,0.88);backdrop-filter:blur(24px);
+  justify-content:space-between;padding:1rem 3rem;
+  background:rgba(2,4,8,0.92);backdrop-filter:blur(24px);
   border-bottom:1px solid var(--b2);transition:padding .3s}
-nav.slim{padding:.65rem 4rem}
+nav.slim{padding:.65rem 3rem}
 .nav-brand{font-weight:700;font-size:1rem;color:var(--cyan);
-  letter-spacing:-.01em;cursor:pointer;text-decoration:none}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-family:var(--mono);font-size:.72rem;color:var(--muted2);
+  letter-spacing:-.01em;cursor:pointer;text-decoration:none;flex-shrink:0}
+.nav-links{display:flex;gap:1.4rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:.68rem;color:var(--muted2);
   text-decoration:none;letter-spacing:.04em;text-transform:uppercase;transition:color .2s}
 .nav-links a:hover{color:var(--cyan)}
 .nav-contact{background:transparent;color:var(--cyan);font-family:var(--mono);
   font-weight:600;font-size:.78rem;padding:.45rem 1.1rem;border-radius:6px;
-  border:1px solid rgba(56,189,248,0.4);cursor:pointer;
+  border:1px solid rgba(56,189,248,0.4);cursor:pointer;flex-shrink:0;
   transition:background .2s,box-shadow .2s}
 .nav-contact:hover{background:var(--cdim);box-shadow:0 0 20px var(--cglow)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;
+  cursor:pointer;padding:.4rem;z-index:300}
+.hbar{display:block;width:24px;height:2px;background:var(--cyan);border-radius:2px;
+  transition:transform .3s,opacity .3s}
+.hbar-top.open{transform:translateY(7px) rotate(45deg)}
+.hbar-mid.open{opacity:0}
+.hbar-bot.open{transform:translateY(-7px) rotate(-45deg)}
+.mob-drawer{position:fixed;top:0;right:-100%;width:min(300px,80vw);height:100vh;
+  background:rgba(5,8,15,0.98);backdrop-filter:blur(24px);
+  border-left:1px solid var(--b2);z-index:250;
+  transition:right .35s cubic-bezier(.4,0,.2,1);padding:5rem 2rem 2rem}
+.mob-drawer.open{right:0}
+.mob-links{display:flex;flex-direction:column;gap:.2rem}
+.mob-link{font-family:var(--mono);font-size:.85rem;color:var(--muted2);text-decoration:none;
+  letter-spacing:.06em;text-transform:uppercase;padding:.75rem 1rem;border-radius:8px;
+  transition:background .2s,color .2s;border:1px solid transparent}
+.mob-link:hover{background:var(--cdim);color:var(--cyan);border-color:rgba(56,189,248,.2)}
+.mob-overlay{position:fixed;inset:0;z-index:240;background:rgba(0,0,0,.5);backdrop-filter:blur(2px)}
+@media(max-width:900px){
+  .nav-links{display:none}
+  .desktop-only{display:none!important}
+  .hamburger{display:flex}
+  nav{padding:.8rem 1.5rem}
+  nav.slim{padding:.6rem 1.5rem}
+  .hero-inner{grid-template-columns:1fr!important}
+  #hero{padding-top:6rem}
+}
+@media(min-width:901px){.hamburger{display:none}}
  
 /* LAYOUT */
 section{position:relative;z-index:1;scroll-margin-top:72px}
@@ -616,16 +644,35 @@ const go = (id, e) => {
    COMPONENTS
 ═══════════════════════════════════════════ */
 function Nav({ slim }) {
+  const [open, setOpen] = useState(false);
+  const links = [["about","About"],["skills","Skills"],["experience","Experience"],["projects","Projects"],["system-design","Design"],["ai-experiments","AI"],["leadership","Leadership"],["achievements","Achievements"],["contact","Contact"]];
+  const handleNav = (id, e) => { go(id, e); setOpen(false); };
   return (
-    <nav className={slim ? "slim" : ""}>
-      <a className="nav-brand" onClick={(e) => go("hero", e)} href="#hero">sneha.attu</a>
-      <ul className="nav-links">
-        {[["about","About"],["skills","Skills"],["experience","Experience"],["projects","Projects"],["system-design","Design"],["ai-experiments","AI"],["leadership","Leadership"],["achievements","Achievements"],["contact","Contact"]].map(([id,label]) => (
-          <li key={id}><a href={`#${id}`} onClick={(e) => go(id, e)}>{label}</a></li>
-        ))}
-      </ul>
-      <button className="nav-contact" onClick={(e) => go("contact", e)}>Contact Me →</button>
-    </nav>
+    <>
+      <nav className={slim ? "slim" : ""}>
+        <a className="nav-brand" onClick={(e) => go("hero", e)} href="#hero">sneha.attu</a>
+        <ul className="nav-links">
+          {links.map(([id,label]) => (
+            <li key={id}><a href={`#${id}`} onClick={(e) => go(id, e)}>{label}</a></li>
+          ))}
+        </ul>
+        <button className="nav-contact desktop-only" onClick={(e) => go("contact", e)}>Contact Me →</button>
+        <button className="hamburger" onClick={() => setOpen(o => !o)} aria-label="Menu">
+          <span className={open ? "hbar hbar-top open" : "hbar hbar-top"} />
+          <span className={open ? "hbar hbar-mid open" : "hbar hbar-mid"} />
+          <span className={open ? "hbar hbar-bot open" : "hbar hbar-bot"} />
+        </button>
+      </nav>
+      <div className={open ? "mob-drawer open" : "mob-drawer"}>
+        <div className="mob-links">
+          {links.map(([id,label]) => (
+            <a key={id} href={`#${id}`} onClick={(e) => handleNav(id, e)} className="mob-link">{label}</a>
+          ))}
+          <button className="btn-p" style={{marginTop:"1rem",width:"100%",textAlign:"center"}} onClick={(e) => handleNav("contact", e)}>Contact Me →</button>
+        </div>
+      </div>
+      {open && <div className="mob-overlay" onClick={() => setOpen(false)} />}
+    </>
   );
 }
  
@@ -654,16 +701,15 @@ function Hero() {
  
           {/* RIGHT SIDE — Photo + Metrics */}
           <div className="fade" style={{ transitionDelay:".2s", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem" }}>
- 
             {/* PHOTO */}
-            <div style={{
-              position:"relative", width:"200px", height:"200px", flexShrink:0,
-            }}>
+            <div style={{ position:"relative", width:"220px", height:"220px", flexShrink:0 }}>
               <div style={{
-                position:"absolute", inset:"-3px",
-                borderRadius:"50%",
-                background:"linear-gradient(135deg, var(--cyan), var(--violet))",
-                zIndex:0,
+                position:"absolute", inset:"-4px", borderRadius:"50%",
+                background:"linear-gradient(135deg, var(--cyan), var(--violet))", zIndex:0,
+              }}/>
+              <div style={{
+                position:"absolute", inset:"0px", borderRadius:"50%",
+                background:"var(--bg)", zIndex:0,
               }}/>
               <img
                 src="/photo.png"
@@ -671,21 +717,17 @@ function Hero() {
                 style={{
                   position:"relative", zIndex:1,
                   width:"100%", height:"100%",
-                  borderRadius:"50%",
-                  objectFit:"cover",
-                  objectPosition:"top",
-                  border:"3px solid var(--bg)",
+                  borderRadius:"50%", objectFit:"cover", objectPosition:"center top",
+                  border:"4px solid var(--bg)",
                 }}
               />
               <div style={{
-                position:"absolute", bottom:"8px", right:"8px", zIndex:2,
+                position:"absolute", bottom:"14px", right:"14px", zIndex:2,
                 background:"var(--emerald)", borderRadius:"50%",
-                width:"18px", height:"18px",
-                border:"2px solid var(--bg)",
-                boxShadow:"0 0 10px var(--emerald)",
+                width:"20px", height:"20px",
+                border:"3px solid var(--bg)", boxShadow:"0 0 12px var(--emerald)",
               }}/>
             </div>
- 
             {/* METRICS */}
             <div className="metrics-col" style={{ width:"100%" }}>
               {METRICS.map(m => (
@@ -1015,11 +1057,114 @@ function Contact() {
               <span className="cc-val">github.com/sneha-attu</span>
             </a>
           </div>
-          <a href="mailto:snehaattu9408@gmail.com" className="btn-p" style={{ fontSize:"1rem",padding:"1rem 2.5rem" }}>Say Hello →</a>
+          {/* ── Formspree Message Form ── */}
+          <ContactForm />
           <div className="ctag">// +91 88675 59408 · snehaattu9408@gmail.com · Bengaluru, India</div>
         </div>
       </div>
     </section>
+  );
+}
+ 
+function ContactForm() {
+  const [status, setStatus] = useState("idle");
+  const [form, setForm] = useState({ name:"", email:"", subject:"", message:"" });
+ 
+  const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+ 
+  const handleSubmit = async () => {
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
+    setStatus("sending");
+    try {
+      const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ name: form.name, email: form.email, subject: form.subject, message: form.message }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setForm({ name:"", email:"", subject:"", message:"" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+ 
+  const inputStyle = {
+    width:"100%", background:"var(--surface2)", border:"1px solid var(--b2)",
+    borderRadius:"8px", padding:".7rem 1rem", color:"var(--text)",
+    fontFamily:"var(--font)", fontSize:".9rem", outline:"none", transition:"border-color .2s",
+  };
+  const labelStyle = {
+    fontFamily:"var(--mono)", fontSize:".65rem", color:"var(--muted)",
+    letterSpacing:".08em", textTransform:"uppercase", display:"block", marginBottom:".4rem",
+  };
+  const focus = e => e.target.style.borderColor = "var(--cyan)";
+  const blur  = e => e.target.style.borderColor = "var(--b2)";
+  const disabled = !form.name.trim() || !form.email.trim() || !form.message.trim() || status === "sending";
+ 
+  return (
+    <div style={{
+      width:"100%", marginTop:"2.5rem",
+      background:"var(--card)", border:"1px solid var(--b2)",
+      borderRadius:"var(--r)", padding:"2rem",
+    }}>
+      <div style={{ fontFamily:"var(--mono)", fontSize:".7rem", color:"var(--cyan)", letterSpacing:".1em", textTransform:"uppercase", marginBottom:"1.4rem" }}>
+        // Send Me a Message
+      </div>
+ 
+      {status === "success" ? (
+        <div style={{ textAlign:"center", padding:"2.5rem 1rem" }}>
+          <div style={{ fontSize:"2.5rem", marginBottom:"1rem" }}>✅</div>
+          <div style={{ fontWeight:700, fontSize:"1.1rem", color:"var(--emerald)", marginBottom:".5rem" }}>Message sent!</div>
+          <p style={{ color:"var(--muted2)", fontSize:".9rem" }}>Thanks for reaching out — I'll get back to you soon.</p>
+          <button className="btn-s" style={{ marginTop:"1.5rem" }} onClick={() => setStatus("idle")}>Send another →</button>
+        </div>
+      ) : (
+        <>
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1rem", marginBottom:"1rem" }}>
+            <div>
+              <label style={labelStyle}>Your Name *</label>
+              <input name="name" value={form.name} onChange={handleChange} placeholder="Jane Doe"
+                style={inputStyle} onFocus={focus} onBlur={blur} />
+            </div>
+            <div>
+              <label style={labelStyle}>Your Email *</label>
+              <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="jane@example.com"
+                style={inputStyle} onFocus={focus} onBlur={blur} />
+            </div>
+          </div>
+          <div style={{ marginBottom:"1rem" }}>
+            <label style={labelStyle}>Subject</label>
+            <input name="subject" value={form.subject} onChange={handleChange} placeholder="Project collab, hiring, or just saying hi!"
+              style={inputStyle} onFocus={focus} onBlur={blur} />
+          </div>
+          <div style={{ marginBottom:"1.4rem" }}>
+            <label style={labelStyle}>Message *</label>
+            <textarea name="message" value={form.message} onChange={handleChange}
+              placeholder="Hi Sneha, I'd love to talk about..." rows={5}
+              style={{ ...inputStyle, resize:"vertical", lineHeight:"1.6" }}
+              onFocus={focus} onBlur={blur} />
+          </div>
+          {status === "error" && (
+            <p style={{ fontFamily:"var(--mono)", fontSize:".75rem", color:"#f87171", marginBottom:"1rem" }}>
+              // Something went wrong — please try again or email directly.
+            </p>
+          )}
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"1rem" }}>
+            <span style={{ fontFamily:"var(--mono)", fontSize:".68rem", color:"var(--muted)" }}>
+              // Powered by Formspree · arrives directly in my inbox
+            </span>
+            <button className="btn-p" onClick={handleSubmit} disabled={disabled}
+              style={{ fontSize:".9rem", padding:".75rem 2rem", opacity: disabled ? 0.5 : 1, cursor: disabled ? "not-allowed" : "pointer" }}>
+              {status === "sending" ? "Sending…" : "Send Message →"}
+            </button>
+          </div>
+        </>
+      )}
+    </div>
   );
 }
  
@@ -1068,4 +1213,3 @@ export default function App() {
     </>
   );
 }
- 
