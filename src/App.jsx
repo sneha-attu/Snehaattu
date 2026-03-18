@@ -523,7 +523,7 @@ section{position:relative;z-index:1;scroll-margin-top:72px}
  
 /* CONTACT */
 #contact{padding:8rem 0}
-.contact-inner{max-width:860px;margin:0 auto;text-align:center}
+.contact-inner{max-width:700px;margin:0 auto;text-align:center}
 .cc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;margin-top:2.5rem}
 .cc{background:var(--card);border:1px solid var(--b2);border-radius:var(--r);
   padding:1.4rem 1rem;text-align:center;text-decoration:none;
@@ -699,7 +699,7 @@ const go = (id, e) => {
 ═══════════════════════════════════════════ */
 function Nav({ slim }) {
   const [open, setOpen] = useState(false);
-  const links = [["about","About"],["skills","Skills"],["experience","Experience"],["projects","Projects"],["achievements","Achievements"],["contact","Contact"]];
+  const links = [["about","About"],["skills","Skills"],["experience","Experience"],["projects","Projects"],["system-design","Design"],["ai-experiments","AI"],["leadership","Leadership"],["achievements","Achievements"],["contact","Contact"]];
   const handleNav = (id, e) => { go(id, e); setOpen(false); };
   return (
     <>
@@ -745,7 +745,7 @@ function Hero() {
                 <div style={{ position:"absolute", bottom:"8px", right:"8px", zIndex:2, background:"var(--emerald)", borderRadius:"50%", width:"16px", height:"16px", border:"2px solid var(--bg)", boxShadow:"0 0 10px var(--emerald)" }}/>
               </div>
             </div>
-            <div className="hero-badge">CS Student · GIT Belgaum · 2026 Batch</div>
+            <div className="hero-badge"><span className="bdot" />CS Student · GIT Belgaum · 2026 Batch</div>
             <h1 className="hero-name">Sneha&nbsp;<span className="hl">Attu.</span></h1>
             <p className="hero-role">// Software Engineer · AI Builder · Project Coordinator</p>
             <p className="hero-desc">Building scalable AI platforms, real-time distributed systems, and data-driven products. From event-driven backends processing <strong style={{ color:"var(--cyan)" }}>1000+ events/sec</strong> to intelligent multi-agent AI pipelines — engineering things that perform at scale.</p>
@@ -1006,15 +1006,16 @@ function AchievementsAndCerts() {
   return (
     <section id="achievements" style={{ padding:"4rem 0", background:"var(--bg2)" }}>
       <div className="ctr">
+ 
+        {/* ── Section Header ── */}
         <div className="fade">
-          <div className="lbl">Achievements & Certifications</div>
+          <div className="lbl">Achievements, Awards & Certifications</div>
           <h2 className="ttl">Recognition & <span className="hl">Verified Impact</span>.</h2>
-          <p className="sub">Hackathon placements, verified certificates from ISRO, Infosys, IIT Guwahati and Cisco.</p>
+          <p className="sub">Real hackathon placements, certificates from top organisations — ISRO, Infosys, IIT Guwahati, Cisco — and measurable engineering results.</p>
         </div>
-
-        {/* All items in one unified grid */}
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(270px,1fr))", gap:"1.2rem", marginTop:"2rem" }}>
-          {/* Award Cards */}
+ 
+        {/* ── Award Cards ── */}
+        <div className="awards-grid" style={{marginTop:"2rem"}}>
           {AWARDS.map(a => (
             <div key={a.title} className="acard fade" style={{ borderColor:`${a.color}22` }}>
               <div className="acard-bar" style={{ background:a.color }} />
@@ -1025,20 +1026,29 @@ function AchievementsAndCerts() {
               {a.cert && <div style={{fontFamily:"var(--mono)",fontSize:".6rem",color:"var(--muted)",marginTop:".8rem",padding:".3rem .6rem",background:"rgba(255,255,255,0.03)",borderRadius:"4px",border:"1px solid var(--b2)"}}># {a.cert}</div>}
             </div>
           ))}
-          {/* Certificate Cards — same grid, same style */}
+        </div>
+ 
+        {/* ── Divider: Certificates ── */}
+        <div className="sep" style={{marginTop:"2rem"}}>
+          <div className="sep-line" style={{ background:"linear-gradient(90deg,transparent,var(--b2))" }} />
+          <span className="sep-lbl">// Verified Certificates</span>
+          <div className="sep-line" style={{ background:"linear-gradient(90deg,var(--b2),transparent)" }} />
+        </div>
+ 
+        <div className="cert-grid" style={{marginTop:"1.5rem"}}>
           {CERTS.map(c => (
-            <div key={c.name} className="acard fade" style={{ borderColor:"rgba(56,189,248,0.15)" }}>
-              <div className="acard-bar" style={{ background:"var(--cyan)" }} />
-              <div className="aw-head">
-                <div className="aw-icon">📜</div>
-                <span className="aw-year">{c.year}</span>
+            <div key={c.name} className="certcard fade">
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:"0.5rem"}}>
+                <div className="cert-org">{c.org}</div>
+                <span style={{fontFamily:"var(--mono)",fontSize:".6rem",color:"var(--muted)",background:"var(--surface2)",padding:".15rem .5rem",borderRadius:"4px",border:"1px solid var(--b2)",whiteSpace:"nowrap"}}>{c.year}</span>
               </div>
-              <div className="aw-title">{c.name}</div>
-              <div className="aw-org" style={{ color:"var(--cyan)" }}>{c.org}</div>
-              <div className="cert-st" style={{marginTop:".5rem"}}><span className="cdot done" />Verified & Certified</div>
+              <div className="cert-name">{c.name}</div>
+              <div className="cert-st"><span className="cdot done" />Verified & Certified</div>
             </div>
           ))}
         </div>
+ 
+ 
       </div>
     </section>
   );
@@ -1082,6 +1092,8 @@ function Contact() {
               <span className="cc-val">github.com/sneha-attu</span>
             </a>
           </div>
+          {/* ── Formspree Message Form ── */}
+          <ContactForm />
           <div className="ctag">// +91 88675 59408 · snehaattu9408@gmail.com · Bengaluru, India</div>
         </div>
       </div>
@@ -1089,6 +1101,92 @@ function Contact() {
   );
 }
 
+function ContactForm() {
+  const FORM_ID = "xbdzqaqj"; // ← Replace with your Formspree ID e.g. "xpwzgkrb"
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const [form, setForm] = useState({ name:"", email:"", subject:"", message:"" });
+  const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+  const handleSend = async () => {
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
+    setStatus("sending");
+    try {
+      const res = await fetch(`xbdzqaqj`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) { setStatus("success"); setForm({ name:"", email:"", subject:"", message:"" }); }
+      else setStatus("error");
+    } catch { setStatus("error"); }
+  };
+  const inputStyle = {
+    width:"100%", background:"var(--surface2)", border:"1px solid var(--b2)",
+    borderRadius:"8px", padding:".7rem 1rem", color:"var(--text)",
+    fontFamily:"var(--font)", fontSize:".9rem", outline:"none", transition:"border-color .2s",
+  };
+  const labelStyle = {
+    fontFamily:"var(--mono)", fontSize:".65rem", color:"var(--muted)",
+    letterSpacing:".08em", textTransform:"uppercase", display:"block", marginBottom:".4rem",
+  };
+  const focus = e => e.target.style.borderColor = "var(--cyan)";
+  const blur  = e => e.target.style.borderColor = "var(--b2)";
+  const disabled = !form.name.trim() || !form.email.trim() || !form.message.trim() || status === "sending";
+
+  return (
+    <div style={{ width:"100%", marginTop:"2.5rem", background:"var(--card)", border:"1px solid var(--b2)", borderRadius:"var(--r)", padding:"2rem" }}>
+      <div style={{ fontFamily:"var(--mono)", fontSize:".7rem", color:"var(--cyan)", letterSpacing:".1em", textTransform:"uppercase", marginBottom:"1.4rem" }}>
+        // Send Me a Message
+      </div>
+      {status === "success" ? (
+        <div style={{ textAlign:"center", padding:"2rem 1rem" }}>
+          <div style={{ fontSize:"2.5rem", marginBottom:"1rem" }}>✅</div>
+          <div style={{ fontWeight:700, fontSize:"1.1rem", color:"var(--emerald)", marginBottom:".5rem" }}>Message sent!</div>
+          <p style={{ color:"var(--muted2)", fontSize:".9rem", marginBottom:"1.5rem" }}>Thanks for reaching out — I'll get back to you soon.</p>
+          <button className="btn-s" onClick={() => setStatus("idle")}>Send another →</button>
+        </div>
+      ) : (
+        <>
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1rem", marginBottom:"1rem" }}>
+            <div>
+              <label style={labelStyle}>Your Name *</label>
+              <input name="name" value={form.name} onChange={handleChange} placeholder="Jane Doe" style={inputStyle} onFocus={focus} onBlur={blur} />
+            </div>
+            <div>
+              <label style={labelStyle}>Your Email *</label>
+              <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="jane@example.com" style={inputStyle} onFocus={focus} onBlur={blur} />
+            </div>
+          </div>
+          <div style={{ marginBottom:"1rem" }}>
+            <label style={labelStyle}>Subject</label>
+            <input name="subject" value={form.subject} onChange={handleChange} placeholder="Project collab, hiring, or just saying hi!" style={inputStyle} onFocus={focus} onBlur={blur} />
+          </div>
+          <div style={{ marginBottom:"1.4rem" }}>
+            <label style={labelStyle}>Message *</label>
+            <textarea name="message" value={form.message} onChange={handleChange}
+              placeholder="Hi Sneha, I'd love to talk about..." rows={5}
+              style={{ ...inputStyle, resize:"vertical", lineHeight:"1.6" }}
+              onFocus={focus} onBlur={blur} />
+          </div>
+          {status === "error" && (
+            <p style={{ fontFamily:"var(--mono)", fontSize:".75rem", color:"#f87171", marginBottom:"1rem" }}>
+              // Something went wrong — please try again.
+            </p>
+          )}
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"1rem" }}>
+            <span style={{ fontFamily:"var(--mono)", fontSize:".68rem", color:"var(--muted)" }}>
+              // Message arrives directly in my inbox
+            </span>
+            <button className="btn-p" onClick={handleSend} disabled={disabled}
+              style={{ fontSize:".9rem", padding:".75rem 2rem", opacity: disabled ? 0.5 : 1, cursor: disabled ? "not-allowed" : "pointer" }}>
+              {status === "sending" ? "Sending…" : "Send Message →"}
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+ 
 function Footer() {
   return (
     <footer>
@@ -1114,28 +1212,6 @@ export default function App() {
   const slim = useSlim();
   const canvasRef = useNeural();
   useFade();
-  // Set favicon dynamically
-  useEffect(() => {
-    const canvas = document.createElement('canvas');
-    canvas.width = 32; canvas.height = 32;
-    const ctx = canvas.getContext('2d');
-    // Background
-    ctx.fillStyle = '#020408';
-    ctx.fillRect(0,0,32,32);
-    // Cyan circle
-    ctx.strokeStyle = '#38bdf8';
-    ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(16,16,12,0,Math.PI*2); ctx.stroke();
-    // S letter
-    ctx.fillStyle = '#38bdf8';
-    ctx.font = 'bold 16px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('S', 16, 17);
-    const link = document.createElement('link');
-    link.rel = 'icon'; link.href = canvas.toDataURL();
-    document.head.appendChild(link);
-  }, []);
  
   return (
     <>
@@ -1149,8 +1225,8 @@ export default function App() {
       <Projects />
       <SystemDesign />
       <AIExperiments />
-      <AchievementsAndCerts />
       <Leadership />
+      <AchievementsAndCerts />
       <Contact />
       <Footer />
     </>
