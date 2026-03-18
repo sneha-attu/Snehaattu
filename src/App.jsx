@@ -490,7 +490,7 @@ section{position:relative;z-index:1;scroll-margin-top:72px}
 .cc:hover{border-color:var(--border);box-shadow:0 0 30px rgba(56,189,248,.08);transform:translateY(-3px)}
 .cc-icon{display:flex;align-items:center;justify-content:center;width:46px;height:46px;background:var(--cdim);border-radius:10px;border:1px solid rgba(56,189,248,0.2);color:var(--cyan)}
 .cc-lbl{font-family:var(--mono);font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-.cc-val{font-size:.78rem;color:var(--cyan);text-align:center}
+.cc-val{font-size:.75rem;color:var(--cyan);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .ctag{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:1.5rem}
  
 /* FOOTER */
@@ -956,12 +956,12 @@ function Contact() {
               <span className="cc-lbl">Email</span>
               <span className="cc-val">snehaattu9408@gmail.com</span>
             </a>
-            <a href="tel:+918867559408" className="cc">
+            <a href="tel:+918867559408" className="cc" style={{overflow:"hidden"}}>
               <span className="cc-icon" style={{color:"var(--cyan)"}}>
                 <svg width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               </span>
               <span className="cc-lbl">Phone</span>
-              <span className="cc-val" style={{whiteSpace:"nowrap"}}>+91 8867559408</span>
+              <span className="cc-val" style={{whiteSpace:"nowrap",fontSize:".72rem",letterSpacing:"0"}}>+918867559408</span>
             </a>
             <a href="https://www.linkedin.com/in/sneha-attu/" target="_blank" rel="noreferrer" className="cc">
               <span className="cc-icon" style={{color:"var(--cyan)"}}>
@@ -1031,4 +1031,3 @@ export default function App() {
     </>
   );
 }
- 
