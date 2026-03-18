@@ -324,8 +324,8 @@ section{position:relative;z-index:1;scroll-margin-top:72px}
 .btn-s:hover{border-color:var(--cyan);color:var(--cyan)}
  
 /* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;padding-top:5rem}
-.hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;width:100%;min-height:70vh}
+#hero{min-height:100vh;display:flex;align-items:flex-start;padding-top:7rem}
+.hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:start;width:100%}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);
   font-size:.7rem;color:var(--emerald);border:1px solid rgba(52,211,153,.3);
   padding:.3rem .9rem;border-radius:99px;margin-bottom:1.4rem}
@@ -733,7 +733,7 @@ function Hero() {
   return (
     <section id="hero" style={{ minHeight:"100vh", display:"flex", alignItems:"center", paddingTop:"5rem" }}>
       <div className="ctr" style={{ width:"100%" }}>
-        <div className="hero-inner" style={{alignItems:"center"}}>
+        <div className="hero-inner">
 
           {/* LEFT — Name + content */}
           <div className="fade">
@@ -764,7 +764,7 @@ function Hero() {
           </div>
 
           {/* RIGHT — Photo (desktop only) + Metrics */}
-          <div className="fade hero-right-col" style={{ transitionDelay:".2s", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem", justifyContent:"flex-start", paddingTop:"2rem" }}>
+          <div className="fade hero-right-col" style={{ transitionDelay:".2s", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem" }}>
             <div className="hero-photo-desktop" style={{ position:"relative", width:"320px", height:"320px", flexShrink:0 }}>
               <div style={{ position:"absolute", inset:"-3px", borderRadius:"50%", background:"linear-gradient(135deg,var(--cyan),var(--violet))", zIndex:0 }}/>
               <div style={{ position:"absolute", inset:"2px", borderRadius:"50%", background:"var(--bg)", zIndex:0 }}/>
