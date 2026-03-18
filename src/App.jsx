@@ -228,7 +228,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-thumb{background:rgba(56,189,248,0.3);border-radius:2px}
  
-#neural-canvas{position:fixed;inset:0;z-index:0;opacity:0.35;pointer-events:none}
+#neural-canvas{position:fixed;inset:0;z-index:0;opacity:0.5;pointer-events:none}
  
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;
@@ -266,9 +266,9 @@ nav.slim{padding:.65rem 3rem}
 .mob-link:hover{background:var(--cdim);color:var(--cyan);border-color:rgba(56,189,248,.2)}
 .mob-overlay{position:fixed;inset:0;z-index:240;background:rgba(0,0,0,.5);backdrop-filter:blur(2px)}
 @media(max-width:900px){
-  .nav-links{display:none}
+  .nav-links{display:none!important}
   .nav-contact{display:none!important}
-  .hamburger{display:flex}
+  .hamburger{display:flex!important}
   nav{padding:.8rem 1.5rem}
   nav.slim{padding:.6rem 1.5rem}
   .hero-inner{grid-template-columns:1fr!important;gap:2rem}
@@ -282,7 +282,10 @@ nav.slim{padding:.65rem 3rem}
 }
 @media(min-width:901px){
   .hero-photo-mobile{display:none!important}
-  .hero-photo-desktop{display:block}
+  .hero-photo-desktop{display:block!important}
+  .hamburger{display:none!important}
+  .nav-contact{display:inline-block!important}
+  .nav-links{display:flex!important}
 }
 @media(min-width:901px){.hamburger{display:none}}
  
@@ -322,14 +325,14 @@ section{position:relative;z-index:1;scroll-margin-top:72px}
  
 /* HERO */
 #hero{min-height:100vh;display:flex;align-items:center;padding-top:5rem}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%}
+.hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;width:100%}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);
   font-size:.7rem;color:var(--emerald);border:1px solid rgba(52,211,153,.3);
   padding:.3rem .9rem;border-radius:99px;margin-bottom:1.4rem}
 .bdot{width:6px;height:6px;background:var(--emerald);border-radius:50%;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-name{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:700;letter-spacing:-.04em;line-height:.95;margin-bottom:.8rem}
-.hero-name .hl{color:var(--cyan);display:block}
+.hero-name{font-size:clamp(2.8rem,5vw,4.5rem);font-weight:700;letter-spacing:-.04em;line-height:1;margin-bottom:.8rem;white-space:nowrap}
+.hero-name .hl{color:var(--cyan);display:inline}
 .hero-role{font-family:var(--mono);font-size:.88rem;color:var(--violet);margin-bottom:1.4rem;letter-spacing:.02em}
 .hero-desc{font-size:1.05rem;color:rgba(226,232,240,.7);max-width:470px;margin-bottom:2rem;line-height:1.8}
 .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
@@ -618,26 +621,67 @@ function useNeural() {
   const ref = useRef(null);
   useEffect(() => {
     const c = ref.current, ctx = c.getContext("2d");
-    let W, H, nodes = [], raf;
+    let W, H, nodes = [], raf, mouse = { x: -9999, y: -9999 };
     const resize = () => { W = c.width = innerWidth; H = c.height = innerHeight; };
     const init = () => {
       nodes = [];
-      for (let i = 0; i < Math.floor(W * H / 22000); i++)
-        nodes.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.4, r: Math.random()*1.5+.5 });
+      const count = Math.floor(W * H / 18000);
+      for (let i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random()*W, y: Math.random()*H,
+          vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35,
+          r: Math.random()*1.4+.6,
+          pulse: Math.random()*Math.PI*2,
+          color: Math.random() > 0.75 ? '167,139,250' : '56,189,248',
+        });
+      }
     };
+    const onMove = e => { mouse.x = e.clientX; mouse.y = e.clientY; };
+    window.addEventListener("mousemove", onMove);
     const draw = () => {
       ctx.clearRect(0,0,W,H);
-      nodes.forEach(n => { n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1; });
+      nodes.forEach(n => {
+        n.pulse += 0.018;
+        // Gentle mouse attraction (subtle, not repulsion)
+        const mdx = mouse.x - n.x, mdy = mouse.y - n.y;
+        const md = Math.sqrt(mdx*mdx + mdy*mdy);
+        if (md < 180 && md > 0) { n.vx += (mdx/md)*0.04; n.vy += (mdy/md)*0.04; }
+        // Speed cap — keep it calm
+        const spd = Math.sqrt(n.vx*n.vx+n.vy*n.vy);
+        if (spd > 0.8) { n.vx = n.vx/spd*0.8; n.vy = n.vy/spd*0.8; }
+        n.x += n.vx; n.y += n.vy;
+        if (n.x<0||n.x>W) n.vx*=-1;
+        if (n.y<0||n.y>H) n.vy*=-1;
+      });
+      // Connections — thin, elegant
       for (let i=0;i<nodes.length;i++) for (let j=i+1;j<nodes.length;j++) {
         const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, d=Math.sqrt(dx*dx+dy*dy);
-        if (d<120) { ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.strokeStyle=`rgba(56,189,248,${0.12*(1-d/120)})`; ctx.lineWidth=.5; ctx.stroke(); }
+        if (d<130) {
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x,nodes[i].y);
+          ctx.lineTo(nodes[j].x,nodes[j].y);
+          ctx.strokeStyle=`rgba(56,189,248,${0.13*(1-d/130)})`;
+          ctx.lineWidth=.5; ctx.stroke();
+        }
       }
-      nodes.forEach(n => { ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fillStyle="rgba(56,189,248,0.5)"; ctx.fill(); });
+      // Nodes — soft pulsing glow, no harsh radial gradient
+      nodes.forEach(n => {
+        const pr = Math.max(0.4, n.r + Math.sin(n.pulse)*0.5);
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, pr, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${n.color},${0.55 + Math.sin(n.pulse)*0.2})`;
+        ctx.fill();
+        // Soft halo — just a slightly larger transparent circle
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, pr*3, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${n.color},0.04)`;
+        ctx.fill();
+      });
       raf = requestAnimationFrame(draw);
     };
     resize(); init(); draw();
     window.addEventListener("resize", () => { resize(); init(); });
-    return () => cancelAnimationFrame(raf);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("mousemove", onMove); };
   }, []);
   return ref;
 }
@@ -720,12 +764,12 @@ function Hero() {
           </div>
 
           {/* RIGHT — Photo (desktop only) + Metrics */}
-          <div className="fade hero-right-col" style={{ transitionDelay:".2s", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem", paddingTop:"5.5rem" }}>
-            <div className="hero-photo-desktop" style={{ position:"relative", width:"220px", height:"220px", flexShrink:0 }}>
-              <div style={{ position:"absolute", inset:"-4px", borderRadius:"50%", background:"linear-gradient(135deg,var(--cyan),var(--violet))", zIndex:0 }}/>
-              <div style={{ position:"absolute", inset:"0", borderRadius:"50%", background:"var(--bg)", zIndex:0 }}/>
-              <img src="/photo.png" alt="Sneha Attu" style={{ position:"relative", zIndex:1, width:"100%", height:"100%", borderRadius:"50%", objectFit:"cover", objectPosition:"center top", border:"4px solid var(--bg)" }}/>
-              <div style={{ position:"absolute", bottom:"14px", right:"14px", zIndex:2, background:"var(--emerald)", borderRadius:"50%", width:"20px", height:"20px", border:"3px solid var(--bg)", boxShadow:"0 0 12px var(--emerald)" }}/>
+          <div className="fade hero-right-col" style={{ transitionDelay:".2s", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem", paddingTop:"0" }}>
+            <div className="hero-photo-desktop" style={{ position:"relative", width:"320px", height:"320px", flexShrink:0 }}>
+              <div style={{ position:"absolute", inset:"-3px", borderRadius:"50%", background:"linear-gradient(135deg,var(--cyan),var(--violet))", zIndex:0 }}/>
+              <div style={{ position:"absolute", inset:"2px", borderRadius:"50%", background:"var(--bg)", zIndex:0 }}/>
+              <img src="/photo.png" alt="Sneha Attu" style={{ position:"absolute", inset:"5px", zIndex:1, width:"calc(100% - 10px)", height:"calc(100% - 10px)", borderRadius:"50%", objectFit:"cover", objectPosition:"center top" }}/>
+              <div style={{ position:"absolute", bottom:"18px", right:"18px", zIndex:2, background:"var(--emerald)", borderRadius:"50%", width:"22px", height:"22px", border:"3px solid var(--bg)", boxShadow:"0 0 14px var(--emerald)" }}/>
             </div>
             <div className="metrics-col" style={{ width:"100%" }}>
               {METRICS.map(m => (
