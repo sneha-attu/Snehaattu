@@ -273,6 +273,13 @@ nav.slim{padding:.65rem 3rem}
   nav.slim{padding:.6rem 1.5rem}
   .hero-inner{grid-template-columns:1fr!important}
   #hero{padding-top:6rem}
+  .hero-photo-desktop{display:none!important}
+  .hero-photo-mobile{display:block}
+  .hero-inner > div:last-child{display:none!important}
+}
+@media(min-width:901px){
+  .hero-photo-mobile{display:none!important}
+  .hero-photo-desktop{display:block}
 }
 @media(min-width:901px){.hamburger{display:none}}
  
@@ -668,7 +675,6 @@ function Nav({ slim }) {
           {links.map(([id,label]) => (
             <a key={id} href={`#${id}`} onClick={(e) => handleNav(id, e)} className="mob-link">{label}</a>
           ))}
-          <button className="btn-p" style={{marginTop:"1rem",width:"100%",textAlign:"center"}} onClick={(e) => handleNav("contact", e)}>Contact Me →</button>
         </div>
       </div>
       {open && <div className="mob-overlay" onClick={() => setOpen(false)} />}
@@ -681,7 +687,18 @@ function Hero() {
     <section id="hero" style={{ minHeight:"100vh", display:"flex", alignItems:"center", paddingTop:"5rem" }}>
       <div className="ctr" style={{ width:"100%" }}>
         <div className="hero-inner">
+
+          {/* LEFT — Name + content */}
           <div className="fade">
+            {/* Mobile only: photo shown above name */}
+            <div className="hero-photo-mobile">
+              <div style={{ position:"relative", width:"150px", height:"150px", margin:"0 auto 1.5rem" }}>
+                <div style={{ position:"absolute", inset:"-4px", borderRadius:"50%", background:"linear-gradient(135deg,var(--cyan),var(--violet))", zIndex:0 }}/>
+                <div style={{ position:"absolute", inset:"0", borderRadius:"50%", background:"var(--bg)", zIndex:0 }}/>
+                <img src="/photo.png" alt="Sneha Attu" style={{ position:"relative", zIndex:1, width:"100%", height:"100%", borderRadius:"50%", objectFit:"cover", objectPosition:"center top", border:"4px solid var(--bg)" }}/>
+                <div style={{ position:"absolute", bottom:"8px", right:"8px", zIndex:2, background:"var(--emerald)", borderRadius:"50%", width:"16px", height:"16px", border:"2px solid var(--bg)", boxShadow:"0 0 10px var(--emerald)" }}/>
+              </div>
+            </div>
             <div className="hero-badge"><span className="bdot" />CS Student · GIT Belgaum · 2026 Batch</div>
             <h1 className="hero-name">Sneha<span className="hl">Attu.</span></h1>
             <p className="hero-role">// Software Engineer · AI Builder · Project Coordinator</p>
@@ -698,37 +715,15 @@ function Hero() {
               {["React","Node.js"].map(t => <span key={t} className="pill pe">{t}</span>)}
             </div>
           </div>
- 
-          {/* RIGHT SIDE — Photo + Metrics */}
+
+          {/* RIGHT — Photo (desktop only) + Metrics */}
           <div className="fade" style={{ transitionDelay:".2s", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem" }}>
-            {/* PHOTO */}
-            <div style={{ position:"relative", width:"220px", height:"220px", flexShrink:0 }}>
-              <div style={{
-                position:"absolute", inset:"-4px", borderRadius:"50%",
-                background:"linear-gradient(135deg, var(--cyan), var(--violet))", zIndex:0,
-              }}/>
-              <div style={{
-                position:"absolute", inset:"0px", borderRadius:"50%",
-                background:"var(--bg)", zIndex:0,
-              }}/>
-              <img
-                src="/photo.png"
-                alt="Sneha Attu"
-                style={{
-                  position:"relative", zIndex:1,
-                  width:"100%", height:"100%",
-                  borderRadius:"50%", objectFit:"cover", objectPosition:"center top",
-                  border:"4px solid var(--bg)",
-                }}
-              />
-              <div style={{
-                position:"absolute", bottom:"14px", right:"14px", zIndex:2,
-                background:"var(--emerald)", borderRadius:"50%",
-                width:"20px", height:"20px",
-                border:"3px solid var(--bg)", boxShadow:"0 0 12px var(--emerald)",
-              }}/>
+            <div className="hero-photo-desktop" style={{ position:"relative", width:"220px", height:"220px", flexShrink:0 }}>
+              <div style={{ position:"absolute", inset:"-4px", borderRadius:"50%", background:"linear-gradient(135deg,var(--cyan),var(--violet))", zIndex:0 }}/>
+              <div style={{ position:"absolute", inset:"0", borderRadius:"50%", background:"var(--bg)", zIndex:0 }}/>
+              <img src="/photo.png" alt="Sneha Attu" style={{ position:"relative", zIndex:1, width:"100%", height:"100%", borderRadius:"50%", objectFit:"cover", objectPosition:"center top", border:"4px solid var(--bg)" }}/>
+              <div style={{ position:"absolute", bottom:"14px", right:"14px", zIndex:2, background:"var(--emerald)", borderRadius:"50%", width:"20px", height:"20px", border:"3px solid var(--bg)", boxShadow:"0 0 12px var(--emerald)" }}/>
             </div>
-            {/* METRICS */}
             <div className="metrics-col" style={{ width:"100%" }}>
               {METRICS.map(m => (
                 <div key={m.tag} className="mc">
@@ -739,6 +734,7 @@ function Hero() {
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -1065,13 +1061,13 @@ function Contact() {
     </section>
   );
 }
- 
+
 function ContactForm() {
   const [status, setStatus] = useState("idle");
   const [form, setForm] = useState({ name:"", email:"", subject:"", message:"" });
- 
+
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
- 
+
   const handleSubmit = async () => {
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
     setStatus("sending");
@@ -1091,7 +1087,7 @@ function ContactForm() {
       setStatus("error");
     }
   };
- 
+
   const inputStyle = {
     width:"100%", background:"var(--surface2)", border:"1px solid var(--b2)",
     borderRadius:"8px", padding:".7rem 1rem", color:"var(--text)",
@@ -1104,7 +1100,7 @@ function ContactForm() {
   const focus = e => e.target.style.borderColor = "var(--cyan)";
   const blur  = e => e.target.style.borderColor = "var(--b2)";
   const disabled = !form.name.trim() || !form.email.trim() || !form.message.trim() || status === "sending";
- 
+
   return (
     <div style={{
       width:"100%", marginTop:"2.5rem",
@@ -1114,7 +1110,7 @@ function ContactForm() {
       <div style={{ fontFamily:"var(--mono)", fontSize:".7rem", color:"var(--cyan)", letterSpacing:".1em", textTransform:"uppercase", marginBottom:"1.4rem" }}>
         // Send Me a Message
       </div>
- 
+
       {status === "success" ? (
         <div style={{ textAlign:"center", padding:"2.5rem 1rem" }}>
           <div style={{ fontSize:"2.5rem", marginBottom:"1rem" }}>✅</div>
