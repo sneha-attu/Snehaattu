@@ -331,7 +331,7 @@ section{position:relative;z-index:1;scroll-margin-top:72px}
   padding:.3rem .9rem;border-radius:99px;margin-bottom:1.4rem}
 .bdot{width:6px;height:6px;background:var(--emerald);border-radius:50%;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-name{font-size:clamp(2.8rem,5vw,4.5rem);font-weight:700;letter-spacing:-.04em;line-height:1;margin-bottom:.8rem;white-space:nowrap}
+.hero-name{font-size:clamp(3.5rem,6.5vw,6rem);font-weight:700;letter-spacing:-.04em;line-height:1;margin-bottom:.8rem;white-space:nowrap}
 .hero-name .hl{color:var(--cyan);display:inline}
 .hero-role{font-family:var(--mono);font-size:.88rem;color:var(--violet);margin-bottom:1.4rem;letter-spacing:.02em}
 .hero-desc{font-size:1.05rem;color:rgba(226,232,240,.7);max-width:470px;margin-bottom:2rem;line-height:1.8}
@@ -747,7 +747,7 @@ function Hero() {
               </div>
             </div>
             <div className="hero-badge"><span className="bdot" />CS Student · GIT Belgaum · 2026 Batch</div>
-            <h1 className="hero-name">Sneha<span className="hl">Attu.</span></h1>
+            <h1 className="hero-name">Sneha <span className="hl">Attu.</span></h1>
             <p className="hero-role">// Software Engineer · AI Builder · Project Coordinator</p>
             <p className="hero-desc">Building scalable AI platforms, real-time distributed systems, and data-driven products. From event-driven backends processing <strong style={{ color:"var(--cyan)" }}>1000+ events/sec</strong> to intelligent multi-agent AI pipelines — engineering things that perform at scale.</p>
             <div className="hero-btns">
