@@ -483,7 +483,7 @@ section{position:relative;z-index:1;scroll-margin-top:72px}
 /* CONTACT */
 #contact{padding:8rem 0}
 .contact-inner{max-width:700px;margin:0 auto;text-align:center}
-.cc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2.5rem;margin-top:2.5rem}
+.cc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;margin-top:2.5rem}
 .cc{background:var(--card);border:1px solid var(--b2);border-radius:var(--r);
   padding:1.4rem 1rem;text-align:center;text-decoration:none;
   display:flex;flex-direction:column;align-items:center;gap:.5rem;transition:all .3s}
@@ -948,13 +948,20 @@ function Contact() {
           <div className="lbl">Get In Touch</div>
           <h2 className="ttl" style={{ fontSize:"clamp(2rem,4vw,3.5rem)",marginBottom:"1rem" }}>Let's <span className="hl">Connect</span>.</h2>
           <p className="sub" style={{ margin:"0 auto" }}>Whether it's a project, a collaboration, or just a conversation about tech and ideas — I'm always open to connecting.</p>
-          <div className="cc-grid">
+          <div className="cc-grid" style={{gridTemplateColumns:"repeat(4,1fr)"}}>
             <a href="mailto:snehaattu9408@gmail.com" className="cc">
               <span className="cc-icon" style={{color:"var(--cyan)"}}>
                 <svg width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
               </span>
               <span className="cc-lbl">Email</span>
               <span className="cc-val">snehaattu9408@gmail.com</span>
+            </a>
+            <a href="tel:+918867559408" className="cc">
+              <span className="cc-icon" style={{color:"var(--cyan)"}}>
+                <svg width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <span className="cc-lbl">Phone</span>
+              <span className="cc-val">+91 88675 59408</span>
             </a>
             <a href="https://www.linkedin.com/in/sneha-attu/" target="_blank" rel="noreferrer" className="cc">
               <span className="cc-icon" style={{color:"var(--cyan)"}}>
@@ -972,7 +979,7 @@ function Contact() {
             </a>
           </div>
           <a href="mailto:snehaattu9408@gmail.com" className="btn-p" style={{ fontSize:"1rem",padding:"1rem 2.5rem" }}>Say Hello →</a>
-          <div className="ctag">// snehaattu9408@gmail.com · Bengaluru, India · KLS GIT 2026</div>
+          <div className="ctag">// +91 88675 59408 · snehaattu9408@gmail.com · Bengaluru, India</div>
         </div>
       </div>
     </section>
@@ -984,7 +991,7 @@ function Footer() {
     <footer>
       <div className="ctr">
         <div className="fi">
-          <span className="fcopy">© ✦ Handcrafted by Sneha Attu, with 🤍</span>
+          <span className="fcopy">© 2026 Sneha Attu · B.E. Computer Science · KLS Gogte Institute of Technology, Belgaum</span>
           <div className="flinks">
             <a href="#hero" onClick={(e)=>go("hero",e)}>Top ↑</a>
             <a href="https://github.com/sneha-attu" target="_blank" rel="noreferrer">GitHub</a>
@@ -1024,4 +1031,3 @@ export default function App() {
     </>
   );
 }
- 
