@@ -85,6 +85,7 @@ const PROJECTS = [
     title: "Emotion Detection System",
     desc: "Real-time emotion classification system using computer vision and a machine learning pipeline to detect and categorize human facial expressions.",
     tags: ["Python","OpenCV","TensorFlow","CNN"],
+    github: "https://github.com/sneha-attu/emotion-detection-text",
   },
 ];
 
@@ -511,7 +512,7 @@ function Hero() {
       <div className="ctr" style={{width:"100%"}}>
         <div className="hero-inner">
           <div className="fade">
-            <div className="hero-badge"><span className="bdot"/>CS Student · GIT Belgaum · 2026 Batch</div>
+            <div className="hero-badge"><span className="bdot"/>Software Engineer · AI Builder · CS 2026</div>
             <h1 className="hero-name">Sneha <span className="hl">Attu.</span></h1>
             <p className="hero-role">// Software Engineer · AI Builder · Project Coordinator</p>
             <p className="hero-desc">Building scalable AI platforms, real-time distributed systems, and data-driven products. From event-driven backends processing <strong style={{color:"var(--cyan)"}}>1000+ events/sec</strong> to intelligent multi-agent AI pipelines — engineering things that perform at scale.</p>
@@ -540,7 +541,6 @@ function Hero() {
               <div style={{position:"absolute",inset:"-3px",borderRadius:"50%",background:"linear-gradient(135deg,var(--cyan),var(--violet))",zIndex:0}}/>
               <div style={{position:"absolute",inset:"2px",borderRadius:"50%",background:"var(--bg)",zIndex:0}}/>
               <img src="/photo.png" alt="Sneha Attu" style={{position:"absolute",inset:"5px",zIndex:1,width:"calc(100% - 10px)",height:"calc(100% - 10px)",borderRadius:"50%",objectFit:"cover",objectPosition:"center top"}}/>
-              <div style={{position:"absolute",bottom:"14px",right:"14px",zIndex:2,background:"var(--emerald)",borderRadius:"50%",width:"20px",height:"20px",border:"3px solid var(--bg)",boxShadow:"0 0 14px var(--emerald)"}}/>
             </div>
             <div className="metrics-col" style={{width:"100%"}}>
               {METRICS.slice(0,2).map(m=>(
@@ -672,7 +672,7 @@ function Projects() {
                 <div className="psl">Tech Stack</div>
                 <div className="ptags">{p.tags.map(t=><span key={t} className="ptag">{t}</span>)}</div>
                 <div className="plinks">
-                  <a href="https://github.com/sneha-attu" target="_blank" rel="noreferrer" className="plink">⌥ GitHub</a>
+                  <a href={p.github||"https://github.com/sneha-attu"} target="_blank" rel="noreferrer" className="plink">⌥ GitHub</a>
                   {p.flagship&&<a href="#system-design" onClick={(e)=>go("system-design",e)} className="plink demo">⬡ System Design →</a>}
                 </div>
               </div>
@@ -866,7 +866,7 @@ function Contact() {
             </a>
           </div>
           <ContactForm/>
-          <div className="ctag">// +91 8867559408 · snehaattu9408@gmail.com · Bengaluru, India</div>
+          <div className="ctag">// +91 8867559408 · Bengaluru, India</div>
         </div>
       </div>
     </section>
@@ -878,7 +878,7 @@ function Footer() {
     <footer>
       <div className="ctr">
         <div className="fi">
-          <span className="fcopy">⚡ Built by Sneha Attu · CS '26 · KLS GIT Belgaum</span>
+          <span className="fcopy">⚡ Built by Sneha Attu · 2026</span>
           <div className="flinks">
             <a href="#hero" onClick={(e)=>go("hero",e)}>Top ↑</a>
             <a href="https://github.com/sneha-attu" target="_blank" rel="noreferrer">GitHub</a>
