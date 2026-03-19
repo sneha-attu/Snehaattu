@@ -11,10 +11,10 @@ const METRICS = [
 ];
 
 const SKILLS = [
-  { icon: "💻", title: "Languages & Core", items: [["Python","90"],["Java / TypeScript","78"],["SQL (PostgreSQL)","80"],["C++","72"]] },
+  { icon: "💻", title: "Languages & Core", items: [["Python","90"],["Java / TypeScript","78"],["SQL (PostgreSQL)","80"]] },
   { icon: "🏗", title: "Backend & Infra", items: [["Kafka (Event Streaming)","80"],["AWS (EC2, S3, Lambda)","68"],["Redis (Cache-Aside)","76"],["Docker / Terraform / CI-CD","72"]] },
   { icon: "📊", title: "Analytics & PM Tools", items: [["PostHog","85"],["Google Ads","78"],["JIRA (Advanced Roadmaps)","82"],["Tableau / Grafana / Prometheus","72"]] },
-  { icon: "🤖", title: "AI & Engineering", items: [["CrewAI / Agentic AI","80"],["ML Pipelines","70"],["React / Next.js / Node.js","76"],["Distributed Tracing / Zod","70"]] },
+  { icon: "🤖", title: "AI & Engineering", items: [["CrewAI / LangChain / LangGraph / Agentic AI","80"],["ML Pipelines","70"],["React / Next.js / Node.js","76"],["Distributed Tracing / Zod","70"]] },
 ];
 
 const EXPERIENCE = [
@@ -513,7 +513,7 @@ function Nav({ slim }) {
           <span className={open?"hbar hbar-mid open":"hbar hbar-mid"}/>
           <span className={open?"hbar hbar-bot open":"hbar hbar-bot"}/>
         </button>
-        <button className="nav-contact" onClick={(e)=>go("contact",e)}>Contact Me →</button>
+        <button className="nav-contact" onClick={(e)=>go("contact",e)}>Let's Connect →</button>
       </nav>
       <div className={open?"mob-drawer open":"mob-drawer"}>
         <div className="mob-links">{links.map(([id,label])=><a key={id} href={`#${id}`} onClick={(e)=>handleNav(id,e)} className="mob-link">{label}</a>)}</div>
@@ -534,8 +534,8 @@ function Hero() {
             <p className="hero-desc">Building scalable AI platforms, real-time distributed systems, and data-driven products. From event-driven backends processing <strong style={{color:"var(--cyan)"}}>1000+ events/sec</strong> to intelligent multi-agent AI pipelines — engineering things that perform at scale.</p>
             <div className="hero-btns">
               <button className="btn-p" onClick={(e)=>go("projects",e)}>View Projects</button>
-              <button className="btn-s" onClick={(e)=>go("about",e)}>About Me</button>
               <a className="btn-s" href="https://github.com/sneha-attu" target="_blank" rel="noreferrer">GitHub ↗</a>
+              <a className="btn-s" href="https://www.linkedin.com/in/sneha-attu/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
             </div>
             <div className="stack-lbl">Core Stack</div>
             <div className="pill-row">
