@@ -236,7 +236,8 @@ section{position:relative;z-index:1;scroll-margin-top:72px}
 .hero-desc{font-size:1.05rem;color:rgba(226,232,240,.7);max-width:470px;margin-bottom:2rem;line-height:1.8}
 .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
 .stack-lbl{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
-.metrics-col{display:flex;flex-direction:column;gap:1.2rem}
+.hero-photo-mob{display:none;text-align:center}
+.metrics-col{display:flex;flex-direction:column;gap:1.2rem;width:100%}
 .mc{background:var(--card);border:1px solid var(--b2);border-radius:var(--r);padding:1.2rem 1.5rem;transition:border-color .3s,box-shadow .3s}
 .mc:hover{border-color:var(--border);box-shadow:0 0 30px rgba(56,189,248,.08)}
 .mc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
@@ -394,18 +395,39 @@ footer{border-top:1px solid var(--b2);padding:2rem 0;position:relative;z-index:1
 .flinks{display:flex;gap:1.5rem}
 .flinks a{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-decoration:none;transition:color .2s}
 .flinks a:hover{color:var(--cyan)}
+.hero-right-col{display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+.hero-metrics-mobile{display:none}
+.hero-metrics-desktop{display:flex;flex-direction:column;gap:1.2rem}
 @media(max-width:900px){
   .nav-links{display:none!important}.nav-contact{display:none!important}
   .hamburger{display:flex!important}
   nav{padding:.8rem 1.5rem}nav.slim{padding:.6rem 1.5rem}
-  .hero-inner{grid-template-columns:1fr!important;gap:2rem}
+  .hero-inner{grid-template-columns:1fr!important;gap:0}
   .hero-right-col{display:none!important}
+  .hero-photo-mob{display:block!important}
+  .hero-metrics-mobile{display:grid!important;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1rem}
+  .hero-metrics-desktop{display:none!important}
   .about-grid,.sd-grid,.proj-grid{grid-template-columns:1fr}
   .pcard.full{grid-template-columns:1fr}
   .pcard.full .pcb{border-right:none;border-bottom:1px solid var(--b2)}
   .cc-grid{grid-template-columns:1fr 1fr!important}
+  .hero-name{font-size:clamp(2.5rem,10vw,4rem)!important}
+  .sg-grid{grid-template-columns:1fr!important}
+  .awards-grid{grid-template-columns:1fr!important}
+  .ach-grid{grid-template-columns:1fr 1fr!important}
+  .lead-grid{grid-template-columns:1fr!important}
+  .ai-grid{grid-template-columns:1fr!important}
+  .cert-grid{grid-template-columns:1fr!important}
+  .fi{flex-direction:column;align-items:flex-start;gap:.5rem}
+  .hero-btns{flex-direction:column;gap:.6rem}
+  .hero-btns .btn-p,.hero-btns .btn-s{width:100%;text-align:center}
 }
-@media(min-width:901px){.hamburger{display:none!important}}
+@media(min-width:901px){
+  .hamburger{display:none!important}
+  .hero-photo-mob{display:none!important}
+  .hero-inner{grid-template-columns:1.1fr .9fr!important}
+  .hero-right-col > div:first-child{width:260px!important;height:260px!important}
+}
 `;
 
 /* ═══════════════════════════════════════════
@@ -519,11 +541,23 @@ function Hero() {
   return (
     <section id="hero" style={{minHeight:"100vh",display:"flex",alignItems:"center",paddingTop:"5rem",paddingBottom:"3rem"}}>
       <div className="ctr" style={{width:"100%"}}>
-        <div className="hero-inner">
+        <div className="hero-inner" style={{alignItems:"center"}}>
+
+          {/* LEFT col — badge, name, desc, buttons, stack, stats */}
           <div className="fade">
             <div className="hero-badge"><span className="bdot"/>Software Engineer · AI Builder · CS 2026</div>
             <h1 className="hero-name">Sneha <span className="hl">Attu.</span></h1>
             <p className="hero-role">// Software Engineer · AI Builder · Project Coordinator</p>
+
+            {/* Photo — mobile only, shown right after role */}
+            <div className="hero-photo-mob">
+              <div style={{position:"relative",width:"160px",height:"160px",margin:"1.5rem auto"}}>
+                <div style={{position:"absolute",inset:"-3px",borderRadius:"50%",background:"linear-gradient(135deg,var(--cyan),var(--violet))",zIndex:0}}/>
+                <div style={{position:"absolute",inset:"2px",borderRadius:"50%",background:"var(--bg)",zIndex:0}}/>
+                <img src="/photo.png" alt="Sneha Attu" style={{position:"absolute",inset:"5px",zIndex:1,width:"calc(100% - 10px)",height:"calc(100% - 10px)",borderRadius:"50%",objectFit:"cover",objectPosition:"center top"}}/>
+              </div>
+            </div>
+
             <p className="hero-desc">Building scalable AI platforms, real-time distributed systems, and data-driven products. From event-driven backends processing <strong style={{color:"var(--cyan)"}}>1000+ events/sec</strong> to intelligent multi-agent AI pipelines — engineering things that perform at scale.</p>
             <div className="hero-btns">
               <button className="btn-p" onClick={(e)=>go("projects",e)}>View Projects</button>
@@ -544,14 +578,26 @@ function Hero() {
                 </div>
               ))}
             </div>
+            {/* Metrics — mobile only, shown below stats bar */}
+            <div className="hero-metrics-mobile">
+              {METRICS.slice(0,2).map(m=>(
+                <div key={m.tag} className="mc" style={{marginTop:".8rem"}}>
+                  <div className="mc-head"><span className="mc-tag">{m.tag}</span><span>{m.icon}</span></div>
+                  <div className="mc-val">{m.val}</div>
+                  <div className="mc-desc">{m.desc}</div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="fade hero-right-col" style={{transitionDelay:".2s",display:"flex",flexDirection:"column",alignItems:"center",gap:"1.5rem"}}>
+
+          {/* RIGHT col — photo + metrics (desktop only) */}
+          <div className="fade hero-right-col" style={{transitionDelay:".2s"}}>
             <div style={{position:"relative",width:"260px",height:"260px",flexShrink:0}}>
               <div style={{position:"absolute",inset:"-3px",borderRadius:"50%",background:"linear-gradient(135deg,var(--cyan),var(--violet))",zIndex:0}}/>
               <div style={{position:"absolute",inset:"2px",borderRadius:"50%",background:"var(--bg)",zIndex:0}}/>
               <img src="/photo.png" alt="Sneha Attu" style={{position:"absolute",inset:"5px",zIndex:1,width:"calc(100% - 10px)",height:"calc(100% - 10px)",borderRadius:"50%",objectFit:"cover",objectPosition:"center top"}}/>
             </div>
-            <div className="metrics-col" style={{width:"100%"}}>
+            <div className="metrics-col hero-metrics-desktop" style={{width:"100%"}}>
               {METRICS.slice(0,2).map(m=>(
                 <div key={m.tag} className="mc">
                   <div className="mc-head"><span className="mc-tag">{m.tag}</span><span>{m.icon}</span></div>
@@ -561,6 +607,7 @@ function Hero() {
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </section>
