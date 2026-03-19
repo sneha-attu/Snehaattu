@@ -146,9 +146,6 @@ const ACH_METRICS = [
 ];
 
 const CERTS = [
-  { org:"ISRO · Hack2Skill",        name:"Bharatiya Antariksh Hackathon 2025",                    status:"done", year:"2025" },
-  { org:"Infosys + CNCF",           name:"Infosys Global Hackathon 2025 — Top 10 Finish",         status:"done", year:"2025" },
-  { org:"Deshpande Startups",       name:"ONEST Hackathon 2025 — 3rd Place 🥉",                   status:"done", year:"2025" },
   { org:"IIT Guwahati · Unstop",    name:"PMx 2026 — Product Management Expedition (Udgam 2026)", status:"done", year:"2026" },
   { org:"Cisco Networking Academy", name:"NDG Linux Unhatched — Partner Program",                  status:"done", year:"2024" },
 ];
@@ -484,12 +481,12 @@ const go = (id, e) => { e && e.preventDefault(); document.getElementById(id)?.sc
 ═══════════════════════════════════════════ */
 function Nav({ slim }) {
   const [open, setOpen] = useState(false);
-  const links = [["about","About"],["skills","Skills"],["experience","Experience"],["projects","Projects"],["system-design","Design"],["ai-experiments","AI"],["achievements","Achievements"],["leadership","Leadership"],["contact","Contact"]];
+  const links = [["about","About"],["skills","Skills"],["experience","Experience"],["projects","Projects"],["system-design","Design"],["ai-experiments","AI"],["achievements","Achievements"],["leadership","Leadership"]];
   const handleNav = (id, e) => { go(id, e); setOpen(false); };
   return (
     <>
       <nav className={slim?"slim":""}>
-        <a className="nav-brand" onClick={(e)=>go("hero",e)} href="#hero">sneha.attu</a>
+        <a className="nav-brand" onClick={(e)=>go("hero",e)} href="#hero">Sneha's Portfolio</a>
         <ul className="nav-links">{links.map(([id,label])=><li key={id}><a href={`#${id}`} onClick={(e)=>go(id,e)}>{label}</a></li>)}</ul>
         <button className="hamburger" onClick={()=>setOpen(o=>!o)} aria-label="Menu">
           <span className={open?"hbar hbar-top open":"hbar hbar-top"}/>
@@ -866,7 +863,7 @@ function Contact() {
             </a>
           </div>
           <ContactForm/>
-          <div className="ctag">// +91 8867559408 · Bengaluru, India</div>
+          <div className="ctag">// Let's build something meaningful together 🚀</div>
         </div>
       </div>
     </section>
@@ -878,7 +875,7 @@ function Footer() {
     <footer>
       <div className="ctr">
         <div className="fi">
-          <span className="fcopy">⚡ Built by Sneha Attu · 2026</span>
+          <span className="fcopy">✦ Designed & built by Sneha Attu — turning ideas into impact, one commit at a time.</span>
           <div className="flinks">
             <a href="#hero" onClick={(e)=>go("hero",e)}>Top ↑</a>
             <a href="https://github.com/sneha-attu" target="_blank" rel="noreferrer">GitHub</a>
