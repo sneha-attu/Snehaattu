@@ -529,7 +529,6 @@ function Hero() {
       <div className="ctr" style={{width:"100%"}}>
         <div className="hero-inner">
           <div className="fade">
-            <div className="hero-badge"><span className="bdot"/>Software Engineer · AI Builder · CS 2026</div>
             <h1 className="hero-name">Sneha <span className="hl">Attu.</span></h1>
             <p className="hero-role">// Software Engineer · AI Builder · Project Coordinator</p>
             <p className="hero-desc">Building scalable AI platforms, real-time distributed systems, and data-driven products. From event-driven backends processing <strong style={{color:"var(--cyan)"}}>1000+ events/sec</strong> to intelligent multi-agent AI pipelines — engineering things that perform at scale.</p>
