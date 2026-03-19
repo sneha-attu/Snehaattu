@@ -55,6 +55,16 @@ const PROJECTS = [
     tags: ["Python","MediaPipe Hands","OpenCV","Gesture Recognition","Computer Vision","CPU-only"],
   },
   {
+    typeColor: "#fbbf24", type: "📰 Full-Stack · NeuBrutalism · Live",
+    title: "NewsMania — Interactive News Dashboard",
+    desc: "A modern interactive news dashboard where users discover, verify, and share global news in real time. Features a gamification system — earn points for verifying (+10) and sharing (+5) articles, with a reward system at 50 points.",
+    metrics: [["Live","Deployed"],["Gamified","UX"],["Real-Time","News API"]],
+    arch: ["MediaStack News API","Alpine.js State","LocalStorage Auth","Gamification Engine","Social Share"],
+    tags: ["Alpine.js","Tailwind CSS","HTML5","MediaStack API","Bootstrap Icons","LocalStorage"],
+    github: "https://github.com/sneha-attu",
+    demo: "https://news-mania-eight.vercel.app/",
+  },
+  {
     typeColor: "#34d399", type: "🔄 Ongoing · Backend Systems",
     title: "Real-Time Shipment Tracker",
     desc: "Intelligent shipment tracking system with predictive delivery insights, real-time status updates, and event-driven backend architecture.",
@@ -670,6 +680,7 @@ function Projects() {
                 <div className="ptags">{p.tags.map(t=><span key={t} className="ptag">{t}</span>)}</div>
                 <div className="plinks">
                   <a href={p.github||"https://github.com/sneha-attu"} target="_blank" rel="noreferrer" className="plink">⌥ GitHub</a>
+                  {p.demo&&<a href={p.demo} target="_blank" rel="noreferrer" className="plink demo">🌐 Live Demo →</a>}
                   {p.flagship&&<a href="#system-design" onClick={(e)=>go("system-design",e)} className="plink demo">⬡ System Design →</a>}
                 </div>
               </div>
