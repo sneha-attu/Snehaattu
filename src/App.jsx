@@ -122,7 +122,7 @@ const SD_CARDS = [
 
 const AI_CARDS = [
   { icon:"🤖", title:"Multi-Agent Task Orchestration", desc:"CrewAI-based system where specialized agents (Researcher, Analyst, Writer) collaborate autonomously to complete complex multi-step tasks without human intervention.", status:"building" },
-  { icon:"👁",  title:"Emotion-Aware Interfaces",      desc:"Exploring real-time emotion detection via webcam to adapt UI behavior and content delivery based on user emotional state using CNN-based classification.", status:"done" },
+  { icon:"👁",  title:"Emotion-Aware Interfaces", desc:"Exploring real-time emotion detection via webcam to adapt UI behavior and content delivery based on user emotional state using CNN-based classification.", status:"done", github:"https://github.com/sneha-attu/emotion-detection-text" },
   { icon:"🧩", title:"Rubik's Cube Solver",            desc:"Interactive React web app implementing layer-by-layer and advanced cube-solving algorithms with 3D visualization and move-by-move explanation engine.", status:"done" },
 ];
 
@@ -483,7 +483,7 @@ const go = (id, e) => { e && e.preventDefault(); document.getElementById(id)?.sc
 ═══════════════════════════════════════════ */
 function Nav({ slim }) {
   const [open, setOpen] = useState(false);
-  const links = [["about","About"],["skills","Skills"],["experience","Experience"],["projects","Projects"],["system-design","Design"],["ai-experiments","AI"],["leadership","Leadership"],["achievements","Achievements"],["contact","Contact"]];
+  const links = [["about","About"],["skills","Skills"],["experience","Experience"],["projects","Projects"],["system-design","Design"],["ai-experiments","AI"],["achievements","Achievements"],["leadership","Leadership"],["contact","Contact"]];
   const handleNav = (id, e) => { go(id, e); setOpen(false); };
   return (
     <>
@@ -716,7 +716,10 @@ function AIExperiments() {
             <div key={c.title} className="aicard fade">
               <div className="ai-icon">{c.icon}</div><div className="ai-title">{c.title}</div>
               <div className="ai-desc">{c.desc}</div>
-              <span className={`ai-status ${c.status==="done"?"ai-done":"ai-build"}`}>{c.status==="done"?"✓ Complete":"🔨 Building"}</span>
+              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:".5rem",marginTop:"auto"}}>
+                <span className={`ai-status ${c.status==="done"?"ai-done":"ai-build"}`}>{c.status==="done"?"✓ Complete":"🔨 Building"}</span>
+                {c.github&&<a href={c.github} target="_blank" rel="noreferrer" className="plink" style={{fontSize:".65rem",padding:".22rem .6rem"}}>⌥ GitHub</a>}
+              </div>
             </div>
           ))}
         </div>
@@ -750,7 +753,11 @@ function AchievementsAndCerts() {
   return (
     <section id="achievements" style={{padding:"5rem 0",background:"var(--bg2)"}}>
       <div className="ctr">
-        <div className="fade"><div className="lbl">Achievements, Awards & Certifications</div><h2 className="ttl">Recognition & <span className="hl">Verified Impact</span>.</h2><p className="sub">Real hackathon placements and certificates from ISRO, Infosys, IIT Guwahati, Cisco — and measurable engineering results.</p></div>
+        <div className="fade">
+          <div className="lbl">Achievements & Awards</div>
+          <h2 className="ttl">Recognition & <span className="hl">Verified Impact</span>.</h2>
+          <p className="sub">Real hackathon placements and verified certificates from ISRO, Infosys, IIT Guwahati, Cisco and more.</p>
+        </div>
         <div className="awards-grid">
           {AWARDS.map(a=>(
             <div key={a.title} className="acard fade" style={{borderColor:`${a.color}22`}}>
@@ -762,30 +769,19 @@ function AchievementsAndCerts() {
               {a.cert&&<div style={{fontFamily:"var(--mono)",fontSize:".6rem",color:"var(--muted)",marginTop:".8rem",padding:".3rem .6rem",background:"rgba(255,255,255,0.03)",borderRadius:"4px",border:"1px solid var(--b2)"}}># {a.cert}</div>}
             </div>
           ))}
-        </div>
-        <div className="sep" style={{marginTop:"2rem"}}>
-          <div className="sep-line" style={{background:"linear-gradient(90deg,transparent,var(--b2))"}}/><span className="sep-lbl">// Verified Certificates</span><div className="sep-line" style={{background:"linear-gradient(90deg,var(--b2),transparent)"}}/>
-        </div>
-        <div className="cert-grid">
           {CERTS.map(c=>(
-            <div key={c.name} className="certcard fade">
-              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:"0.5rem"}}>
-                <div className="cert-org">{c.org}</div>
-                <span style={{fontFamily:"var(--mono)",fontSize:".6rem",color:"var(--muted)",background:"var(--surface2)",padding:".15rem .5rem",borderRadius:"4px",border:"1px solid var(--b2)",whiteSpace:"nowrap"}}>{c.year}</span>
+            <div key={c.name} className="acard fade" style={{borderColor:"rgba(52,211,153,0.18)"}}>
+              <div className="acard-bar" style={{background:"var(--emerald)"}}/>
+              <div className="aw-head">
+                <div className="aw-icon">📜</div>
+                <span className="aw-year">{c.year}</span>
               </div>
-              <div className="cert-name">{c.name}</div>
-              <div className="cert-st"><span className="cdot done"/>Verified & Certified</div>
-            </div>
-          ))}
-        </div>
-        <div className="sep" style={{marginTop:"2rem"}}>
-          <div className="sep-line" style={{background:"linear-gradient(90deg,transparent,var(--b2))"}}/><span className="sep-lbl">// Performance Metrics</span><div className="sep-line" style={{background:"linear-gradient(90deg,var(--b2),transparent)"}}/>
-        </div>
-        <div className="ach-grid" style={{marginTop:"1.5rem"}}>
-          {ACH_METRICS.map((a,i)=>(
-            <div key={a.title} className="achcard fade" style={{transitionDelay:`${i*.05}s`}}>
-              <span className="ach-ico">{a.icon}</span>
-              <div><div className="ach-val">{a.val}</div><div className="ach-tit">{a.title}</div><div className="ach-desc">{a.desc}</div></div>
+              <div className="aw-title">{c.name}</div>
+              <div className="aw-org" style={{color:"var(--emerald)"}}>{c.org}</div>
+              <div style={{display:"flex",alignItems:"center",gap:".4rem",marginTop:".5rem"}}>
+                <span style={{width:"6px",height:"6px",borderRadius:"50%",background:"var(--emerald)",flexShrink:0,display:"inline-block"}}/>
+                <span style={{fontSize:".75rem",color:"var(--muted2)"}}>Verified & Certified</span>
+              </div>
             </div>
           ))}
         </div>
@@ -914,8 +910,8 @@ export default function App() {
       <Projects/>
       <SystemDesign/>
       <AIExperiments/>
-      <Leadership/>
       <AchievementsAndCerts/>
+      <Leadership/>
       <Contact/>
       <Footer/>
     </>
