@@ -11,10 +11,10 @@ const METRICS = [
 ];
 
 const SKILLS = [
-  { icon: "💻", title: "Languages & Core", items: [["Python","90"],["Java / TypeScript","78"],["SQL (PostgreSQL)","80"]] },
+  { icon: "💻", title: "Languages & Core", items: [["Python","90"],["Java / TypeScript","78"],["SQL (PostgreSQL)","80"],["C++","72"]] },
   { icon: "🏗", title: "Backend & Infra", items: [["Kafka (Event Streaming)","80"],["AWS (EC2, S3, Lambda)","68"],["Redis (Cache-Aside)","76"],["Docker / Terraform / CI-CD","72"]] },
   { icon: "📊", title: "Analytics & PM Tools", items: [["PostHog","85"],["Google Ads","78"],["JIRA (Advanced Roadmaps)","82"],["Tableau / Grafana / Prometheus","72"]] },
-  { icon: "🤖", title: "AI & Engineering", items: [["CrewAI / LangChain / LangGraph / Agentic AI","80"],["ML Pipelines","70"],["React / Next.js / Node.js","76"],["Distributed Tracing / Zod","70"]] },
+  { icon: "🤖", title: "AI & Engineering", items: [["CrewAI / Agentic AI","80"],["ML Pipelines","70"],["React / Next.js / Node.js","76"],["Distributed Tracing / Zod","70"]] },
 ];
 
 const EXPERIENCE = [
@@ -22,12 +22,14 @@ const EXPERIENCE = [
     role: "Founder's Office Growth Intern",
     company: "Ecombuddha.ai — Bengaluru, India",
     period: "Jan 2026 – Present",
+    points: [],
     tags: ["PostHog","Google Ads","Agile/Scrum","AI Products","Stakeholder Management"],
   },
   {
     role: "Software Development Intern",
     company: "Theta Dynamics — Remote / India",
     period: "Jul 2025 – Dec 2025",
+    points: [],
     tags: ["JIRA","SDLC","SLA Management","RTM","UAT / SIT"],
   },
 ];
@@ -503,7 +505,7 @@ function Nav({ slim }) {
           <span className={open?"hbar hbar-mid open":"hbar hbar-mid"}/>
           <span className={open?"hbar hbar-bot open":"hbar hbar-bot"}/>
         </button>
-        <button className="nav-contact" onClick={(e)=>go("contact",e)}>Let's Connect →</button>
+        <button className="nav-contact" onClick={(e)=>go("contact",e)}>Contact Me →</button>
       </nav>
       <div className={open?"mob-drawer open":"mob-drawer"}>
         <div className="mob-links">{links.map(([id,label])=><a key={id} href={`#${id}`} onClick={(e)=>handleNav(id,e)} className="mob-link">{label}</a>)}</div>
@@ -519,13 +521,14 @@ function Hero() {
       <div className="ctr" style={{width:"100%"}}>
         <div className="hero-inner">
           <div className="fade">
+            <div className="hero-badge"><span className="bdot"/>Software Engineer · AI Builder · CS 2026</div>
             <h1 className="hero-name">Sneha <span className="hl">Attu.</span></h1>
             <p className="hero-role">// Software Engineer · AI Builder · Project Coordinator</p>
             <p className="hero-desc">Building scalable AI platforms, real-time distributed systems, and data-driven products. From event-driven backends processing <strong style={{color:"var(--cyan)"}}>1000+ events/sec</strong> to intelligent multi-agent AI pipelines — engineering things that perform at scale.</p>
             <div className="hero-btns">
               <button className="btn-p" onClick={(e)=>go("projects",e)}>View Projects</button>
+              <button className="btn-s" onClick={(e)=>go("about",e)}>About Me</button>
               <a className="btn-s" href="https://github.com/sneha-attu" target="_blank" rel="noreferrer">GitHub ↗</a>
-              <a className="btn-s" href="https://www.linkedin.com/in/sneha-attu/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
             </div>
             <div className="stack-lbl">Core Stack</div>
             <div className="pill-row">
@@ -586,7 +589,7 @@ function About() {
           <div>
             <div className="icard">
               <div className="ict">// Quick Info</div>
-              {[["🎓","KLS GIT, Belgaum","— B.E. Computer Science, 2026"],["📍","Bengaluru","Karnataka, India"],["🏢","Currently at","Ecombuddha.ai — Founder's Office"],["🌐","LinkedIn","linkedin.com/in/sneha-attu"]].map(([ico,b,r])=>(
+              {[["🎓","KLS GIT, Belgaum","— B.E. Computer Science, 2026"],["📍","Bengaluru","Karnataka, India"],["🏢","Currently at","Ecombuddha.ai — Founder's Office"],["🔭","Building:","GestiCalc · Gesture Calculator"],["🌐","LinkedIn","linkedin.com/in/sneha-attu"]].map(([ico,b,r])=>(
                 <div key={b} className="icr"><span className="ico">{ico}</span><div className="icv"><strong>{b}</strong> {r}</div></div>
               ))}
             </div>
@@ -643,8 +646,7 @@ function Experience() {
               <div className="exp-dot"><span/></div>
               <div className="exp-card">
                 <div className="exp-meta"><div><div className="exp-role">{e.role}</div><div className="exp-co">{e.company}</div></div><span className="exp-period">{e.period}</span></div>
-                <ul className="exp-pts">{e.points.map((p,i)=><li key={i}>{p}</li>)}</ul>
-                <div className="exp-tags">{e.tags.map(t=><span key={t} className="etag">{t}</span>)}</div>
+                {e.points.length > 0 && <ul className="exp-pts">{e.points.map((p,i)=><li key={i}>{p}</li>)}</ul>}                <div className="exp-tags">{e.tags.map(t=><span key={t} className="etag">{t}</span>)}</div>
               </div>
             </div>
           ))}
@@ -677,6 +679,7 @@ function Projects() {
                 {p.arch&&<><div className="psl">Architecture</div><div className="arch">{p.arch.map((n,i)=><span key={n}><span className="anode">{n}</span>{i<p.arch.length-1&&<span className="aarr">→</span>}</span>)}</div></>}
                 <div className="psl">Tech Stack</div>
                 <div className="ptags">{p.tags.map(t=><span key={t} className="ptag">{t}</span>)}</div>
+                {p.disclaimer&&<div style={{fontFamily:"var(--mono)",fontSize:".65rem",color:"var(--amber)",background:"rgba(251,191,36,0.07)",border:"1px solid rgba(251,191,36,0.2)",borderRadius:"6px",padding:".5rem .75rem",marginTop:".5rem",lineHeight:"1.5"}}>{p.disclaimer}</div>}
                 <div className="plinks">
                   <a href={p.github||"https://github.com/sneha-attu"} target="_blank" rel="noreferrer" className="plink">⌥ GitHub</a>
                   {p.demo&&<a href={p.demo} target="_blank" rel="noreferrer" className="plink demo">🌐 Live Demo →</a>}
@@ -887,7 +890,7 @@ function Footer() {
       <div className="ctr">
         <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:"1rem"}}>
           <div style={{fontFamily:"var(--mono)",fontSize:".72rem",color:"var(--muted2)"}}>
-            crafted with <span style={{color:"#f87171"}}>♥</span> by <span style={{color:"var(--cyan)",fontWeight:600}}>Sneha Attu</span> · © 2026
+            crafted with <span style={{color:"#f87171"}}>♥</span> by <span style={{color:"var(--cyan)",fontWeight:600}}>Sneha Attu</span> · turning ideas into impact, one commit at a time ✦ © 2026
           </div>
           <div style={{display:"flex",gap:"1.5rem"}}>
             <a href="#hero" onClick={(e)=>go("hero",e)} style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)",textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.target.style.color="var(--cyan)"} onMouseLeave={e=>e.target.style.color="var(--muted)"}>↑ Top</a>
