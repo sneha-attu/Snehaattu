@@ -72,23 +72,33 @@ const PROJECTS = [
     tags: ["Python","Kafka","WebSocket","ML"],
   },
   {
-    typeColor: "#a78bfa", type: "🤖 AI / Multi-Agent",
+    typeColor: "#a78bfa", type: "🤖 AI / Multi-Agent · 🔄 Ongoing",
     title: "Agentic AI System — CrewAI",
     desc: "Multi-agent AI orchestration system where autonomous agents collaborate to complete complex tasks through dynamic workflow coordination.",
     arch: ["Task Input","CrewAI Orchestrator","Agent Network","Output"],
     tags: ["Python","CrewAI","LLM APIs","REST"],
   },
   {
-    typeColor: "#38bdf8", type: "🌐 IoT · Full-Stack",
+    typeColor: "#38bdf8", type: "🌐 IoT · Full-Stack · Live",
     title: "IoT Smart Dashboard",
     desc: "Real-time IoT monitoring system connecting humidity, light, and ultrasonic sensors (Arduino/ESP32) to a live Flask analytics dashboard.",
+    disclaimer: "⚠️ Live sensor data is only visible when an Arduino/ESP32 board is physically connected and transmitting. The demo shows UI and layout without hardware.",
     tags: ["Python","Flask","Arduino","ESP32","MQTT"],
+    demo: "https://genuino-uno.vercel.app/",
   },
   {
     typeColor: "#a78bfa", type: "🎤 Real-Time · Networking",
     title: "Voice Chat System — RTP",
     desc: "Low-latency real-time voice communication system built in Python using PyAudio and RTP protocols, demonstrating deep networking fundamentals.",
     tags: ["Python","PyAudio","RTP","Socket Programming"],
+    github: "https://github.com/sneha-attu/rtp-voice-chat",
+  },
+  {
+    typeColor: "#fbbf24", type: "🧩 Algorithm · Interactive · Live",
+    title: "Rubik's Cube Solver",
+    desc: "Interactive React web app implementing layer-by-layer and advanced cube-solving algorithms with 3D visualization and step-by-step move explanation.",
+    tags: ["React","JavaScript","Algorithm","3D Visualization","CSS"],
+    demo: "https://rubiks-cube-solver-delta.vercel.app/",
   },
   {
     typeColor: "#34d399", type: "👁 Computer Vision · ML",
@@ -134,7 +144,7 @@ const SD_CARDS = [
 const AI_CARDS = [
   { icon:"🤖", title:"Multi-Agent Task Orchestration", desc:"CrewAI-based system where specialized agents (Researcher, Analyst, Writer) collaborate autonomously to complete complex multi-step tasks without human intervention.", status:"building" },
   { icon:"👁",  title:"Emotion-Aware Interfaces", desc:"Exploring real-time emotion detection via webcam to adapt UI behavior and content delivery based on user emotional state using CNN-based classification.", status:"done", github:"https://github.com/sneha-attu/emotion-detection-text" },
-  { icon:"🧩", title:"Rubik's Cube Solver",            desc:"Interactive React web app implementing layer-by-layer and advanced cube-solving algorithms with 3D visualization and move-by-move explanation engine.", status:"done" },
+  { icon:"🧩", title:"Rubik's Cube Solver", desc:"Interactive React web app implementing layer-by-layer and advanced cube-solving algorithms with 3D visualization and move-by-move explanation engine.", status:"done", demo:"https://rubiks-cube-solver-delta.vercel.app/" },
 ];
 
 const AWARDS = [
@@ -727,6 +737,7 @@ function AIExperiments() {
               <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:".5rem",marginTop:"auto"}}>
                 <span className={`ai-status ${c.status==="done"?"ai-done":"ai-build"}`}>{c.status==="done"?"✓ Complete":"🔨 Building"}</span>
                 {c.github&&<a href={c.github} target="_blank" rel="noreferrer" className="plink" style={{fontSize:".65rem",padding:".22rem .6rem"}}>⌥ GitHub</a>}
+                {c.demo&&<a href={c.demo} target="_blank" rel="noreferrer" className="plink demo" style={{fontSize:".65rem",padding:".22rem .6rem"}}>🌐 Live</a>}
               </div>
             </div>
           ))}
@@ -883,15 +894,17 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer>
+    <footer style={{borderTop:"1px solid var(--b2)",padding:"2.5rem 0",position:"relative",zIndex:1,textAlign:"center"}}>
       <div className="ctr">
-        <div className="fi">
-          <span className="fcopy">✦ Designed & built by Sneha Attu — turning ideas into impact, one commit at a time.</span>
-          <div className="flinks">
-            <a href="#hero" onClick={(e)=>go("hero",e)}>Top ↑</a>
-            <a href="https://github.com/sneha-attu" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/sneha-attu/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="mailto:snehaattu9408@gmail.com">Email</a>
+        <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:"1rem"}}>
+          <div style={{fontFamily:"var(--mono)",fontSize:".72rem",color:"var(--muted2)"}}>
+            crafted with <span style={{color:"#f87171"}}>♥</span> by <span style={{color:"var(--cyan)",fontWeight:600}}>Sneha Attu</span> · © 2026
+          </div>
+          <div style={{display:"flex",gap:"1.5rem"}}>
+            <a href="#hero" onClick={(e)=>go("hero",e)} style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)",textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.target.style.color="var(--cyan)"} onMouseLeave={e=>e.target.style.color="var(--muted)"}>↑ Top</a>
+            <a href="https://github.com/sneha-attu" target="_blank" rel="noreferrer" style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)",textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.target.style.color="var(--cyan)"} onMouseLeave={e=>e.target.style.color="var(--muted)"}>GitHub</a>
+            <a href="https://www.linkedin.com/in/sneha-attu/" target="_blank" rel="noreferrer" style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)",textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.target.style.color="var(--cyan)"} onMouseLeave={e=>e.target.style.color="var(--muted)"}>LinkedIn</a>
+            <a href="mailto:snehaattu9408@gmail.com" style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)",textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.target.style.color="var(--cyan)"} onMouseLeave={e=>e.target.style.color="var(--muted)"}>Email</a>
           </div>
         </div>
       </div>
