@@ -933,7 +933,7 @@ function Footer() {
       <div className="ctr">
         <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:"1rem"}}>
           <div style={{fontFamily:"var(--mono)",fontSize:".72rem",color:"var(--muted2)"}}>
-            crafted with <span style={{color:"#f87171"}}>♥</span> by <span style={{color:"var(--cyan)",fontWeight:600}}>Sneha Attu</span> · turning ideas into impact, one commit at a time ✦ © 2026
+            crafted with <span style={{color:"#f87171"}}>♥</span> by <span style={{color:"var(--cyan)",fontWeight:600}}>Sneha Attu</span> · turning ideas into impact ✦ © 2026
           </div>
           <div style={{display:"flex",gap:"1.5rem"}}>
             <a href="#hero" onClick={(e)=>go("hero",e)} style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)",textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.target.style.color="var(--cyan)"} onMouseLeave={e=>e.target.style.color="var(--muted)"}>↑ Top</a>
