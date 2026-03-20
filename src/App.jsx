@@ -4,17 +4,17 @@ import { useState, useEffect, useRef } from "react";
    DATA
 ═══════════════════════════════════════════ */
 const METRICS = [
-  { tag: "GestiCalc — Gesture Accuracy",  val: "92%+",   desc: "184/200 gestures correct · CPU-only webcam", icon: "✋" },
-  { tag: "Logistics Platform Latency",    val: "85%",    desc: "DB latency reduced via Zod + Redis caching",  icon: "📉" },
-  { tag: "SLA Compliance",                val: "99.9%",  desc: "platform uptime · resolved 25+ incidents",    icon: "🛡" },
-  { tag: "Conversion Tracking",           val: "+20%",   desc: "accuracy via PostHog + Google Ads funnels",   icon: "📊" },
+  { tag: "GestiCalc — Gesture Accuracy",  val: "92%+",   desc: "184/200 gestures correct · CPU-only webcam", icon: "✦" },
+  { tag: "Logistics Platform Latency",    val: "85%",    desc: "DB latency reduced via Zod + Redis caching",  icon: "↓" },
+  { tag: "SLA Compliance",                val: "99.9%",  desc: "platform uptime · resolved 25+ incidents",    icon: "✓" },
+  { tag: "Conversion Tracking",           val: "+20%",   desc: "accuracy via PostHog + Google Ads funnels",   icon: "↑" },
 ];
 
 const SKILLS = [
-  { icon: "💻", title: "Languages & Core", items: [["Python","90"],["Java / TypeScript","78"],["SQL (PostgreSQL)","80"]] },
-  { icon: "🏗", title: "Backend & Infra", items: [["Kafka (Event Streaming)","80"],["AWS (EC2, S3, Lambda)","68"],["Redis (Cache-Aside)","76"],["Docker / Terraform / CI-CD","72"]] },
-  { icon: "📊", title: "Analytics & PM Tools", items: [["PostHog","85"],["Google Ads","78"],["JIRA (Advanced Roadmaps)","82"],["Tableau / Grafana / Prometheus","72"]] },
-  { icon: "🤖", title: "AI & Engineering", items: [["Crew AI / LangChain / LangGraph","80"],["ML Pipelines","70"],["React / Next.js / Node.js","76"],["Distributed Tracing / Zod","70"]] },
+  { icon: "{ }", title: "Languages & Core", items: [["Python","90"],["Java / TypeScript","78"],["SQL (PostgreSQL)","80"]] },
+  { icon: "⚙", title: "Backend & Infra", items: [["Kafka (Event Streaming)","80"],["AWS (EC2, S3, Lambda)","68"],["Redis (Cache-Aside)","76"],["Docker / Terraform / CI-CD","72"]] },
+  { icon: "↗", title: "Analytics & PM Tools", items: [["PostHog","85"],["Google Ads","78"],["JIRA (Advanced Roadmaps)","82"],["Tableau / Grafana / Prometheus","72"]] },
+  { icon: "◈", title: "AI & Engineering", items: [["Crew AI / LangChain / LangGraph","80"],["ML Pipelines","70"],["React / Next.js / Node.js","76"],["Distributed Tracing / Zod","70"]] },
 ];
 
 const EXPERIENCE = [
@@ -38,7 +38,7 @@ const PROJECTS = [
   {
     flagship: true,
     typeColor: "#34d399",
-    type: "⭐ Flagship Project · AI · Accessibility · Computer Vision",
+    type: "Flagship Project · AI · Accessibility · Computer Vision",
     title: "GestiCalc — Gesture-Driven Calculator for Inclusive Classrooms",
     desc: "Real-time, touch-free arithmetic using hand gestures from a standard webcam. Built for inclusive, low-cost classroom deployment — no special hardware needed.",
     metrics: [["92%+","gesture accuracy"],["92/100","test cases pass"],["0","crashes in testing"]],
@@ -47,7 +47,7 @@ const PROJECTS = [
     tags: ["Python","MediaPipe Hands","OpenCV","Gesture Recognition","Computer Vision","CPU-only"],
   },
   {
-    typeColor: "#fbbf24", type: "📰 Full-Stack · NeuBrutalism · Live",
+    typeColor: "#fbbf24", type: "Full-Stack · NeuBrutalism · Live",
     title: "NewsMania — Interactive News Dashboard",
     desc: "A modern interactive news dashboard where users discover, verify, and share global news in real time. Features a gamification system — earn points for verifying (+10) and sharing (+5) articles, with a reward system at 50 points.",
     metrics: [["Live","Deployed"],["Gamified","UX"],["Real-Time","News API"]],
@@ -57,21 +57,21 @@ const PROJECTS = [
     demo: "https://news-mania-eight.vercel.app/",
   },
   {
-    typeColor: "#34d399", type: "🔄 Ongoing · Backend Systems",
+    typeColor: "#34d399", type: "Ongoing · Backend Systems",
     title: "Real-Time Shipment Tracker",
     desc: "Intelligent shipment tracking system with predictive delivery insights, real-time status updates, and event-driven backend architecture.",
     arch: ["Shipment APIs","Event Bus","Prediction Engine","Client"],
     tags: ["Python","Kafka","WebSocket","ML"],
   },
   {
-    typeColor: "#a78bfa", type: "🤖 AI / Multi-Agent · 🔄 Ongoing",
+    typeColor: "#a78bfa", type: "AI / Multi-Agent · Ongoing",
     title: "Agentic AI System — CrewAI",
     desc: "Multi-agent AI orchestration system where autonomous agents collaborate to complete complex tasks through dynamic workflow coordination.",
     arch: ["Task Input","CrewAI Orchestrator","Agent Network","Output"],
     tags: ["Python","CrewAI","LLM APIs","REST"],
   },
   {
-    typeColor: "#38bdf8", type: "🌐 IoT · Full-Stack · Live",
+    typeColor: "#38bdf8", type: "IoT · Full-Stack · Live",
     title: "IoT Smart Dashboard",
     desc: "Real-time IoT monitoring system connecting humidity, light, and ultrasonic sensors (Arduino/ESP32) to a live Flask analytics dashboard.",
     disclaimer: "⚠️ Live sensor data is only visible when an Arduino/ESP32 board is physically connected and transmitting. The demo shows UI and layout without hardware.",
@@ -79,21 +79,21 @@ const PROJECTS = [
     demo: "https://genuino-uno.vercel.app/",
   },
   {
-    typeColor: "#a78bfa", type: "🎤 Real-Time · Networking",
+    typeColor: "#a78bfa", type: "Real-Time · Networking",
     title: "Voice Chat System — RTP",
     desc: "Low-latency real-time voice communication system built in Python using PyAudio and RTP protocols, demonstrating deep networking fundamentals.",
     tags: ["Python","PyAudio","RTP","Socket Programming"],
     github: "https://github.com/sneha-attu/rtp-voice-chat",
   },
   {
-    typeColor: "#fbbf24", type: "🧩 Algorithm · Interactive · Live",
+    typeColor: "#fbbf24", type: "Algorithm · Interactive · Live",
     title: "Rubik's Cube Solver",
     desc: "Interactive React web app implementing layer-by-layer and advanced cube-solving algorithms with 3D visualization and step-by-step move explanation.",
     tags: ["React","JavaScript","Algorithm","3D Visualization","CSS"],
     demo: "https://rubiks-cube-solver-delta.vercel.app/",
   },
   {
-    typeColor: "#34d399", type: "👁 Computer Vision · ML",
+    typeColor: "#34d399", type: "Computer Vision · ML",
     title: "Emotion Detection System",
     desc: "Real-time emotion classification system using computer vision and a machine learning pipeline to detect and categorize human facial expressions.",
     tags: ["Python","OpenCV","TensorFlow","CNN"],
@@ -134,27 +134,27 @@ const SD_CARDS = [
 ];
 
 const AI_CARDS = [
-  { icon:"🤖", title:"Multi-Agent Task Orchestration", desc:"CrewAI-based system where specialized agents (Researcher, Analyst, Writer) collaborate autonomously to complete complex multi-step tasks without human intervention.", status:"building" },
-  { icon:"👁",  title:"Emotion-Aware Interfaces", desc:"Exploring real-time emotion detection via webcam to adapt UI behavior and content delivery based on user emotional state using CNN-based classification.", status:"done", github:"https://github.com/sneha-attu/emotion-detection-text" },
-  { icon:"🧩", title:"Rubik's Cube Solver", desc:"Interactive React web app implementing layer-by-layer and advanced cube-solving algorithms with 3D visualization and move-by-move explanation engine.", status:"done", demo:"https://rubiks-cube-solver-delta.vercel.app/" },
+  { icon:"◈", title:"Multi-Agent Task Orchestration", desc:"CrewAI-based system where specialized agents (Researcher, Analyst, Writer) collaborate autonomously to complete complex multi-step tasks without human intervention.", status:"building" },
+  { icon:"◉",  title:"Emotion-Aware Interfaces", desc:"Exploring real-time emotion detection via webcam to adapt UI behavior and content delivery based on user emotional state using CNN-based classification.", status:"done", github:"https://github.com/sneha-attu/emotion-detection-text" },
+  { icon:"◇", title:"Rubik's Cube Solver", desc:"Interactive React web app implementing layer-by-layer and advanced cube-solving algorithms with 3D visualization and move-by-move explanation engine.", status:"done", demo:"https://rubiks-cube-solver-delta.vercel.app/" },
 ];
 
 const AWARDS = [
-  { icon:"🚀", title:"Bharatiya Antariksh Hackathon 2025", org:"ISRO · Powered by Hack2Skill", year:"2025", desc:"Successfully submitted an innovative idea for India's premier space hackathon by ISRO. Recognised for innovation, curiosity, and commitment in solving real-world challenges of space and technology.", color:"#f97316", cert:"2025H2S06BAH25-P14190" },
-  { icon:"🏅", title:"Infosys Global Hackathon 2025 — Top 10", org:"Infosys + Cloud Native Computing Foundation (CNCF)", year:"2025", desc:"Ranked in the Top 10 at the Infosys Global Hackathon 2025 powered by Infosys and CNCF. Built an innovative solution for global good, competing against thousands of participants worldwide.", color:"#3b82f6", cert:"Verified at shortner.infy.com/verify" },
-  { icon:"🥉", title:"ONEST Hackathon 2025 — 3rd Place", org:"Deshpande Startups · Hubballi", year:"2025", desc:"Secured 3rd Place at the ONEST Hackathon 2025 at Deshpande Startups, Hubballi — building impactful solutions for real-world challenges in education and skilling.", color:"#f97316", cert:"Certificate of Participation" },
-  { icon:"🎓", title:"PMx 2026 — Product Management Expedition", org:"IIT Guwahati · Udgam 2026 · Unstop", year:"2026", desc:"Participated in PMx 2026 — The Product Management Expedition organised by IIT Guwahati as part of Udgam 2026. Represented Gogte Institute of Technology, Belgaum.", color:"#a78bfa", cert:"Verified via Unstop" },
+  { icon:"✦", title:"Bharatiya Antariksh Hackathon 2025", org:"ISRO · Powered by Hack2Skill", year:"2025", desc:"Successfully submitted an innovative idea for India's premier space hackathon by ISRO. Recognised for innovation, curiosity, and commitment in solving real-world challenges of space and technology.", color:"#f97316", cert:"2025H2S06BAH25-P14190" },
+  { icon:"✦", title:"Infosys Global Hackathon 2025 — Top 10", org:"Infosys + Cloud Native Computing Foundation (CNCF)", year:"2025", desc:"Ranked in the Top 10 at the Infosys Global Hackathon 2025 powered by Infosys and CNCF. Built an innovative solution for global good, competing against thousands of participants worldwide.", color:"#3b82f6", cert:"Verified at shortner.infy.com/verify" },
+  { icon:"✦", title:"ONEST Hackathon 2025 — 3rd Place", org:"Deshpande Startups · Hubballi", year:"2025", desc:"Secured 3rd Place at the ONEST Hackathon 2025 at Deshpande Startups, Hubballi — building impactful solutions for real-world challenges in education and skilling.", color:"#f97316", cert:"Certificate of Participation" },
+  { icon:"✦", title:"PMx 2026 — Product Management Expedition", org:"IIT Guwahati · Udgam 2026 · Unstop", year:"2026", desc:"Participated in PMx 2026 — The Product Management Expedition organised by IIT Guwahati as part of Udgam 2026. Represented Gogte Institute of Technology, Belgaum.", color:"#a78bfa", cert:"Verified via Unstop" },
 ];
 
 const ACH_METRICS = [
-  { icon:"✋", val:"92%+",   title:"GestiCalc Accuracy",      desc:"184/200 gestures · CPU-only webcam" },
-  { icon:"📉", val:"85%",    title:"DB Latency Reduced",       desc:"Zod governance + Redis caching" },
-  { icon:"🎯", val:"+20%",   title:"Conversion Accuracy",      desc:"PostHog + Google Ads funnels" },
-  { icon:"🛡", val:"99.9%",  title:"SLA Maintained",           desc:"25+ critical issues resolved" },
-  { icon:"📈", val:"+15%",   title:"SDLC Velocity",            desc:"Sprint & JIRA optimisation" },
-  { icon:"🥉", val:"3rd",    title:"ONEST Hackathon 2025",     desc:"Deshpande Startups · Hubballi" },
-  { icon:"🏅", val:"Top 10", title:"Infosys Global Hackathon", desc:"Infosys + CNCF · 2025" },
-  { icon:"🚀", val:"4+",     title:"Hackathons Participated",  desc:"ISRO · Infosys · ONEST · IIT Guwahati" },
+  { icon:"✦", val:"92%+",   title:"GestiCalc Accuracy",      desc:"184/200 gestures · CPU-only webcam" },
+  { icon:"↓", val:"85%",    title:"DB Latency Reduced",       desc:"Zod governance + Redis caching" },
+  { icon:"↑", val:"+20%",   title:"Conversion Accuracy",      desc:"PostHog + Google Ads funnels" },
+  { icon:"✓", val:"99.9%",  title:"SLA Maintained",           desc:"25+ critical issues resolved" },
+  { icon:"↗", val:"+15%",   title:"SDLC Velocity",            desc:"Sprint & JIRA optimisation" },
+  { icon:"3", val:"3rd",    title:"ONEST Hackathon 2025",     desc:"Deshpande Startups · Hubballi" },
+  { icon:"10", val:"Top 10", title:"Infosys Global Hackathon", desc:"Infosys + CNCF · 2025" },
+  { icon:"4+", val:"4+",     title:"Hackathons Participated",  desc:"ISRO · Infosys · ONEST · IIT Guwahati" },
 ];
 
 const CERTS = [
@@ -163,8 +163,8 @@ const CERTS = [
 ];
 
 const LEADERSHIP = [
-  { icon:"🎯", role:"Event Head", org:"Unified Students Community (USC)", color:"#38bdf8", desc:"Directed resource allocation and budget reporting for institutional events. Successfully managed 50+ team members, coordinated logistics end-to-end, and resolved critical project bottlenecks under pressure." },
-  { icon:"💻", role:"Media Head", org:"Computer Science Society — KLS GIT", color:"#a78bfa", desc:"Led the media and communications wing of the college CS Society. Managed digital presence, coordinated technical events, workshops, and hackathon promotions across the department." },
+  { icon:"◈", role:"Event Head", org:"Unified Students Community (USC)", color:"#38bdf8", desc:"Directed resource allocation and budget reporting for institutional events. Successfully managed 50+ team members, coordinated logistics end-to-end, and resolved critical project bottlenecks under pressure." },
+  { icon:"◉", role:"Media Head", org:"Computer Science Society — KLS GIT", color:"#a78bfa", desc:"Led the media and communications wing of the college CS Society. Managed digital presence, coordinated technical events, workshops, and hackathon promotions across the department." },
   { icon:"❤️", role:"Leader & Former Volunteer", org:"U&I NGO — Education for Underprivileged Children", color:"#34d399", desc:"Led a team of volunteers at U&I, an NGO focused on providing quality education to underprivileged children. Coordinated teaching sessions, managed volunteer scheduling, and drove community outreach initiatives." },
 ];
 
@@ -382,7 +382,7 @@ section{position:relative;z-index:1;scroll-margin-top:72px}
 .cdot.done{background:var(--emerald)}
 #contact{padding:5rem 0}
 .contact-inner{max-width:700px;margin:0 auto;text-align:center}
-.cc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;margin-top:2.5rem}
+.cc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2.5rem;margin-top:2.5rem}
 .cc{background:var(--card);border:1px solid var(--b2);border-radius:var(--r);padding:1.4rem 1rem;text-align:center;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:.5rem;transition:all .3s}
 .cc:hover{border-color:var(--border);box-shadow:0 0 30px rgba(56,189,248,.08);transform:translateY(-3px)}
 .cc-icon{display:flex;align-items:center;justify-content:center;width:46px;height:46px;background:var(--cdim);border-radius:10px;border:1px solid rgba(56,189,248,0.2);color:var(--cyan)}
@@ -527,7 +527,7 @@ function Nav({ slim }) {
           <span className={open?"hbar hbar-mid open":"hbar hbar-mid"}/>
           <span className={open?"hbar hbar-bot open":"hbar hbar-bot"}/>
         </button>
-        <button className="nav-contact" onClick={(e)=>go("contact",e)}>Let's Connect →</button>
+        <button className="nav-contact" onClick={(e)=>go("contact",e)}>Let's talk →</button>
       </nav>
       <div className={open?"mob-drawer open":"mob-drawer"}>
         <div className="mob-links">{links.map(([id,label])=><a key={id} href={`#${id}`} onClick={(e)=>handleNav(id,e)} className="mob-link">{label}</a>)}</div>
@@ -545,8 +545,9 @@ function Hero() {
 
           {/* LEFT col — badge, name, desc, buttons, stack, stats */}
           <div className="fade">
+            <div className="hero-badge"><span className="bdot"/>Software Engineer · AI Builder · CS 2026</div>
             <h1 className="hero-name">Sneha <span className="hl">Attu.</span></h1>
-            <p className="hero-role">// Software Engineer · AI Builder · Project Coordinator</p>
+            <p className="hero-role">Software Engineer · AI Builder · Project Coordinator</p>
 
             {/* Photo — mobile only, shown right after role */}
             <div className="hero-photo-mob">
@@ -557,7 +558,7 @@ function Hero() {
               </div>
             </div>
 
-            <p className="hero-desc">Building scalable AI platforms, real-time distributed systems, and data-driven products. From event-driven backends processing <strong style={{color:"var(--cyan)"}}>1000+ events/sec</strong> to intelligent multi-agent AI pipelines — engineering things that perform at scale.</p>
+            <p className="hero-desc">I like building things that are fast, useful, and actually work in production. Lately that's meant a lot of backend systems, AI pipelines, and figuring out how to make <strong style={{color:"var(--cyan)"}}>complex problems</strong> feel simple.</p>
             <div className="hero-btns">
               <button className="btn-p" onClick={(e)=>go("projects",e)}>View Projects</button>
               <a className="btn-s" href="https://www.linkedin.com/in/sneha-attu/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
@@ -620,27 +621,27 @@ function About() {
         <div className="about-grid fade">
           <div>
             <div className="lbl">About Me</div>
-            <h2 className="ttl">Building Systems That <span className="hl">Scale</span>.</h2>
+            <h2 className="ttl">A bit about <span className="hl">who I am</span>.</h2>
             <div className="divider" style={{marginBottom:"1.5rem"}}/>
-            <p className="ap">I'm a Computer Science student at <strong>KLS Gogte Institute of Technology (GIT), Belgaum</strong> (2026 Batch) specializing in the Project Management Life Cycle (PMLC), enterprise software delivery, and AI-driven systems.</p>
-            <p className="ap">My work spans <strong>event-driven backend systems, Agile/Scrum delivery, product analytics with PostHog & Google Ads</strong>, multi-agent AI workflows, and enterprise platform coordination.</p>
-            <p className="ap">I thrive at the intersection of <strong>engineering and strategy</strong> — translating complex technical requirements into production-ready solutions while keeping business impact at the center.</p>
+            <p className="ap">I'm a final-year Computer Science student at <strong>KLS Gogte Institute of Technology, Belgaum</strong> — graduating in 2026. I've been building software seriously for about two years now, and I genuinely enjoy it.</p>
+            <p className="ap">Most of my work sits at the backend — <strong>event-driven systems, product analytics, AI workflows</strong> — but I'm comfortable across the stack. I care a lot about things actually working in production, not just in demos.</p>
+            <p className="ap">Right now I'm interning at <strong>Ecombuddha.ai</strong> in Bengaluru and spending my weekends working on agentic AI systems and whatever interesting problem I've stumbled into that week.</p>
             <div className="int-box">
-              <div className="int-lbl">// Interests & Curiosities</div>
+              <div className="int-lbl">Interests & Curiosities</div>
               <div className="int-tags">
-                {["🤖 Agentic AI Systems","📡 Distributed Architectures","⚡ Real-Time Engineering","📊 Product Analytics","🌱 Open Source","📝 Technical Writing","🌍 AI for Social Good","🧠 System Design"].map(t=><span key={t} className="itag">{t}</span>)}
+                {["Agentic AI Systems","Distributed Architectures","Real-Time Engineering","Product Analytics","Open Source","Technical Writing","AI for Social Good","System Design"].map(t=><span key={t} className="itag">{t}</span>)}
               </div>
             </div>
           </div>
           <div>
             <div className="icard">
-              <div className="ict">// Quick Info</div>
-              {[["🎓","KLS GIT, Belgaum","— B.E. Computer Science, 2026"],["📍","Bengaluru","Karnataka, India"],["🏢","Currently at","Ecombuddha.ai — Founder's Office"],["🔭","Building:","GestiCalc · Gesture Calculator"],["🌐","LinkedIn","linkedin.com/in/sneha-attu"]].map(([ico,b,r])=>(
+              <div className="ict">Quick Info</div>
+              {[["◎","KLS GIT, Belgaum","— B.E. Computer Science, 2026"],["◍","Bengaluru","Karnataka, India"],["◈","Currently at","Ecombuddha.ai — Founder's Office"],["◉","Building:","GestiCalc · Gesture Calculator"],["→","LinkedIn","linkedin.com/in/sneha-attu"]].map(([ico,b,r])=>(
                 <div key={b} className="icr"><span className="ico">{ico}</span><div className="icv"><strong>{b}</strong> {r}</div></div>
               ))}
             </div>
             <div className="icard">
-              <div className="ict">// Currently Working With</div>
+              <div className="ict">Currently Working With</div>
               <div className="pill-row">
                 {["Kafka","Redis","AWS"].map(t=><span key={t} className="pill pc">{t}</span>)}
                 {["PostHog","Google Ads","JIRA"].map(t=><span key={t} className="pill pv">{t}</span>)}
@@ -660,7 +661,7 @@ function Skills() {
   return (
     <section id="skills" style={{padding:"5rem 0",background:"linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)"}}>
       <div className="ctr">
-        <div className="fade"><div className="lbl">Technical Skills</div><h2 className="ttl">Full-Stack <span className="hl">Engineering</span> Arsenal.</h2></div>
+        <div className="fade"><div className="lbl">Technical Skills</div><h2 className="ttl">What I <span className="hl">work with</span>.</h2></div>
         <div className="sg-grid fade" ref={ref}>
           {SKILLS.map(g=>(
             <div key={g.title} className="sg">
@@ -685,7 +686,7 @@ function Experience() {
   return (
     <section id="experience" style={{padding:"5rem 0"}}>
       <div className="ctr">
-        <div className="fade"><div className="lbl">Work Experience</div><h2 className="ttl">Industry <span className="hl">Impact</span> at Scale.</h2></div>
+        <div className="fade"><div className="lbl">Work Experience</div><h2 className="ttl">Where I've <span className="hl">worked</span>.</h2></div>
         <div className="exp-tl">
           {EXPERIENCE.map(e=>(
             <div key={e.role} className="exp-item fade">
@@ -708,8 +709,8 @@ function Projects() {
       <div className="ctr">
         <div className="fade" style={{marginBottom:"2rem"}}>
           <div className="lbl">Featured Projects</div>
-          <h2 className="ttl">Systems Built at <span className="hl">Scale</span>.</h2>
-          <p className="sub">From real-time event pipelines to AI agent networks — every project is engineered for performance and impact.</p>
+          <h2 className="ttl">Things I've <span className="hl">built</span>.</h2>
+          <p className="sub">Some are fully shipped, some are ongoing. All of them taught me something.</p>
         </div>
         <div className="proj-grid">
           {PROJECTS.map((p,i)=>(
@@ -727,9 +728,9 @@ function Projects() {
                 <div className="ptags">{p.tags.map(t=><span key={t} className="ptag">{t}</span>)}</div>
                 {p.disclaimer&&<div style={{fontFamily:"var(--mono)",fontSize:".65rem",color:"var(--amber)",background:"rgba(251,191,36,0.07)",border:"1px solid rgba(251,191,36,0.2)",borderRadius:"6px",padding:".5rem .75rem",marginTop:".5rem",lineHeight:"1.5"}}>{p.disclaimer}</div>}
                 <div className="plinks">
-                  <a href={p.github||"https://github.com/sneha-attu"} target="_blank" rel="noreferrer" className="plink">⌥ GitHub</a>
-                  {p.demo&&<a href={p.demo} target="_blank" rel="noreferrer" className="plink demo">🌐 Live Demo →</a>}
-                  {p.flagship&&<a href="#system-design" onClick={(e)=>go("system-design",e)} className="plink demo">⬡ System Design →</a>}
+                  <a href={p.github||"https://github.com/sneha-attu"} target="_blank" rel="noreferrer" className="plink">GitHub</a>
+                  {p.demo&&<a href={p.demo} target="_blank" rel="noreferrer" className="plink demo">Live Demo →</a>}
+                  {p.flagship&&<a href="#system-design" onClick={(e)=>go("system-design",e)} className="plink demo">System Design →</a>}
                 </div>
               </div>
             </div>
@@ -744,7 +745,7 @@ function SystemDesign() {
   return (
     <section id="system-design" style={{padding:"5rem 0"}}>
       <div className="ctr">
-        <div className="fade"><div className="lbl">System Design</div><h2 className="ttl">Engineering <span className="hl">Trade-offs</span> & Decisions.</h2><p className="sub">Deep dives into architectural decisions, scalability considerations, and engineering reasoning behind production-grade systems.</p></div>
+        <div className="fade"><div className="lbl">System Design</div><h2 className="ttl">How I <span className="hl">think</span> through problems.</h2><p className="sub">Some of the architectural decisions behind my projects — what I chose, what I traded off, and why.</p></div>
         <div className="sd-grid">
           {SD_CARDS.map(c=>(
             <div key={c.title} className="sdcard fade">
@@ -766,16 +767,16 @@ function AIExperiments() {
   return (
     <section id="ai-experiments" style={{padding:"5rem 0",background:"linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)"}}>
       <div className="ctr">
-        <div className="fade"><div className="lbl">AI Experiments</div><h2 className="ttl">Exploring the Frontier of <span className="hl">Intelligent Systems</span>.</h2></div>
+        <div className="fade"><div className="lbl">AI Experiments</div><h2 className="ttl">Things I've been <span className="hl">exploring</span>.</h2></div>
         <div className="ai-grid">
           {AI_CARDS.map(c=>(
             <div key={c.title} className="aicard fade">
               <div className="ai-icon">{c.icon}</div><div className="ai-title">{c.title}</div>
               <div className="ai-desc">{c.desc}</div>
               <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:".5rem",marginTop:"auto"}}>
-                <span className={`ai-status ${c.status==="done"?"ai-done":"ai-build"}`}>{c.status==="done"?"✓ Complete":"🔨 Building"}</span>
-                {c.github&&<a href={c.github} target="_blank" rel="noreferrer" className="plink" style={{fontSize:".65rem",padding:".22rem .6rem"}}>⌥ GitHub</a>}
-                {c.demo&&<a href={c.demo} target="_blank" rel="noreferrer" className="plink demo" style={{fontSize:".65rem",padding:".22rem .6rem"}}>🌐 Live</a>}
+                <span className={`ai-status ${c.status==="done"?"ai-done":"ai-build"}`}>{c.status==="done"?"Complete":"In Progress"}</span>
+                {c.github&&<a href={c.github} target="_blank" rel="noreferrer" className="plink" style={{fontSize:".65rem",padding:".22rem .6rem"}}>GitHub</a>}
+                {c.demo&&<a href={c.demo} target="_blank" rel="noreferrer" className="plink demo" style={{fontSize:".65rem",padding:".22rem .6rem"}}>Live</a>}
               </div>
             </div>
           ))}
@@ -789,7 +790,7 @@ function Leadership() {
   return (
     <section id="leadership" style={{padding:"5rem 0",background:"linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%)"}}>
       <div className="ctr">
-        <div className="fade"><div className="lbl">Leadership & Community</div><h2 className="ttl">Beyond the <span className="hl">Code</span>.</h2><p className="sub">Leading teams, building communities, and creating impact beyond engineering.</p></div>
+        <div className="fade"><div className="lbl">Leadership & Community</div><h2 className="ttl">Outside of <span className="hl">engineering</span>.</h2><p className="sub">I've led events, managed teams, and spent time volunteering. It keeps things grounded.</p></div>
         <div className="lead-grid">
           {LEADERSHIP.map(l=>(
             <div key={l.role} className="leadcard fade" style={{borderColor:`${l.color}22`}}>
@@ -812,8 +813,8 @@ function AchievementsAndCerts() {
       <div className="ctr">
         <div className="fade">
           <div className="lbl">Achievements & Awards</div>
-          <h2 className="ttl">Recognition & <span className="hl">Verified Impact</span>.</h2>
-          <p className="sub">Real hackathon placements and verified certificates from ISRO, Infosys, IIT Guwahati, Cisco and more.</p>
+          <h2 className="ttl">A few things I'm <span className="hl">proud of</span>.</h2>
+          <p className="sub">Hackathon placements and certifications from ISRO, Infosys, IIT Guwahati, Cisco and more.</p>
         </div>
         <div className="awards-grid">
           {AWARDS.map(a=>(
@@ -830,7 +831,7 @@ function AchievementsAndCerts() {
             <div key={c.name} className="acard fade" style={{borderColor:"rgba(52,211,153,0.18)"}}>
               <div className="acard-bar" style={{background:"var(--emerald)"}}/>
               <div className="aw-head">
-                <div className="aw-icon">📜</div>
+                <div className="aw-icon">✦</div>
                 <span className="aw-year">{c.year}</span>
               </div>
               <div className="aw-title">{c.name}</div>
@@ -867,10 +868,10 @@ function ContactForm() {
   const disabled=!form.name.trim()||!form.email.trim()||!form.message.trim()||status==="sending";
   return (
     <div style={{width:"100%",marginTop:"2.5rem",background:"var(--card)",border:"1px solid var(--b2)",borderRadius:"var(--r)",padding:"2rem",textAlign:"left"}}>
-      <div style={{fontFamily:"var(--mono)",fontSize:".7rem",color:"var(--cyan)",letterSpacing:".1em",textTransform:"uppercase",marginBottom:"1.4rem"}}>// Send Me a Message</div>
+      <div style={{fontFamily:"var(--mono)",fontSize:".7rem",color:"var(--cyan)",letterSpacing:".1em",textTransform:"uppercase",marginBottom:"1.4rem"}}>Send a Message</div>
       {status==="success"?(
         <div style={{textAlign:"center",padding:"2rem 1rem"}}>
-          <div style={{fontSize:"2.5rem",marginBottom:"1rem"}}>✅</div>
+          <div style={{fontSize:"2.5rem",marginBottom:"1rem",color:"var(--emerald)"}}>✓</div>
           <div style={{fontWeight:700,fontSize:"1.1rem",color:"var(--emerald)",marginBottom:".5rem"}}>Message sent!</div>
           <p style={{color:"var(--muted2)",fontSize:".9rem",marginBottom:"1.5rem"}}>Thanks for reaching out — I'll get back to you soon.</p>
           <button className="btn-s" onClick={()=>setStatus("idle")}>Send another →</button>
@@ -883,9 +884,9 @@ function ContactForm() {
           </div>
           <div style={{marginBottom:"1rem"}}><label style={lStyle}>Subject</label><input name="subject" value={form.subject} onChange={handleChange} placeholder="Project collab, or just saying hi!" style={iStyle} onFocus={focus} onBlur={blur}/></div>
           <div style={{marginBottom:"1.4rem"}}><label style={lStyle}>Message *</label><textarea name="message" value={form.message} onChange={handleChange} placeholder="Hi Sneha, I'd love to talk about..." rows={5} style={{...iStyle,resize:"vertical",lineHeight:"1.6"}} onFocus={focus} onBlur={blur}/></div>
-          {status==="error"&&<p style={{fontFamily:"var(--mono)",fontSize:".75rem",color:"#f87171",marginBottom:"1rem"}}>// Something went wrong — please try again.</p>}
+          {status==="error"&&<p style={{fontFamily:"var(--mono)",fontSize:".75rem",color:"#f87171",marginBottom:"1rem"}}>Something went wrong — please try again.</p>}
           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:"1rem"}}>
-            <span style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)"}}>// Message arrives directly in my inbox</span>
+            <span style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)"}}>I'll get back to you as soon as I can.</span>
             <button className="btn-p" onClick={handleSend} disabled={disabled} style={{fontSize:".9rem",padding:".75rem 2rem",opacity:disabled?0.5:1,cursor:disabled?"not-allowed":"pointer"}}>
               {status==="sending"?"Sending…":"Send Message →"}
             </button>
@@ -902,17 +903,14 @@ function Contact() {
       <div className="ctr">
         <div className="contact-inner fade">
           <div className="lbl">Get In Touch</div>
-          <h2 className="ttl" style={{fontSize:"clamp(2rem,4vw,3.5rem)",marginBottom:"1rem"}}>Let's <span className="hl">Connect</span>.</h2>
-          <p className="sub" style={{margin:"0 auto"}}>Whether it's a project, a collaboration, or just a conversation about tech and ideas — I'm always open to connecting.</p>
+          <h2 className="ttl" style={{fontSize:"clamp(2rem,4vw,3.5rem)",marginBottom:"1rem"}}>Let's <span className="hl">talk</span>.</h2>
+          <p className="sub" style={{margin:"0 auto"}}>Whether it's a project, a collab, or just a conversation — feel free to reach out.</p>
           <div className="cc-grid">
             <a href="mailto:snehaattu9408@gmail.com" className="cc">
               <span className="cc-icon"><svg width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></span>
               <span className="cc-lbl">Email</span><span className="cc-val">snehaattu9408@gmail.com</span>
             </a>
-            <a href="tel:+918867559408" className="cc">
-              <span className="cc-icon"><svg width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-              <span className="cc-lbl">Phone</span><span className="cc-val">+918867559408</span>
-            </a>
+
             <a href="https://www.linkedin.com/in/sneha-attu/" target="_blank" rel="noreferrer" className="cc">
               <span className="cc-icon"><svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
               <span className="cc-lbl">LinkedIn</span><span className="cc-val">linkedin.com/in/sneha-attu</span>
@@ -923,7 +921,7 @@ function Contact() {
             </a>
           </div>
           <ContactForm/>
-          <div className="ctag">// Let's build something meaningful together 🚀</div>
+          <div className="ctag">Let's build something meaningful together.</div>
         </div>
       </div>
     </section>
@@ -936,7 +934,7 @@ function Footer() {
       <div className="ctr">
         <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:"1rem"}}>
           <div style={{fontFamily:"var(--mono)",fontSize:".72rem",color:"var(--muted2)"}}>
-            crafted with <span style={{color:"#f87171"}}>♥</span> by <span style={{color:"var(--cyan)",fontWeight:600}}>Sneha Attu</span> · turning ideas into impact, one commit at a time ✦ © 2026
+            crafted with <span style={{color:"#f87171"}}>♥</span> by <span style={{color:"var(--cyan)",fontWeight:600}}>Sneha Attu</span> · turning ideas into impact, one commit at a time · © 2026
           </div>
           <div style={{display:"flex",gap:"1.5rem"}}>
             <a href="#hero" onClick={(e)=>go("hero",e)} style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)",textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.target.style.color="var(--cyan)"} onMouseLeave={e=>e.target.style.color="var(--muted)"}>↑ Top</a>
