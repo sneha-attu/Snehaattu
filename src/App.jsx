@@ -11,10 +11,10 @@ const METRICS = [
 ];
 
 const SKILLS = [
-  { icon: "💻", title: "Languages & Core", items: [["Python","90"],["Java / TypeScript","78"],["SQL (PostgreSQL)","80"],["C++","72"]] },
+  { icon: "💻", title: "Languages & Core", items: [["Python","90"],["Java / TypeScript","78"],["SQL (PostgreSQL)","80"]] },
   { icon: "🏗", title: "Backend & Infra", items: [["Kafka (Event Streaming)","80"],["AWS (EC2, S3, Lambda)","68"],["Redis (Cache-Aside)","76"],["Docker / Terraform / CI-CD","72"]] },
   { icon: "📊", title: "Analytics & PM Tools", items: [["PostHog","85"],["Google Ads","78"],["JIRA (Advanced Roadmaps)","82"],["Tableau / Grafana / Prometheus","72"]] },
-  { icon: "🤖", title: "AI & Engineering", items: [["CrewAI / Agentic AI","80"],["ML Pipelines","70"],["React / Next.js / Node.js","76"],["Distributed Tracing / Zod","70"]] },
+  { icon: "🤖", title: "AI & Engineering", items: [["Crew AI / LangChain / LangGraph","80"],["ML Pipelines","70"],["React / Next.js / Node.js","76"],["Distributed Tracing / Zod","70"]] },
 ];
 
 const EXPERIENCE = [
@@ -38,7 +38,7 @@ const PROJECTS = [
   {
     flagship: true,
     typeColor: "#34d399",
-    type: "Flagship Project · AI · Accessibility · Computer Vision",
+    type: "⭐ Flagship Project · AI · Accessibility · Computer Vision",
     title: "GestiCalc — Gesture-Driven Calculator for Inclusive Classrooms",
     desc: "Real-time, touch-free arithmetic using hand gestures from a standard webcam. Built for inclusive, low-cost classroom deployment — no special hardware needed.",
     metrics: [["92%+","gesture accuracy"],["92/100","test cases pass"],["0","crashes in testing"]],
@@ -47,7 +47,7 @@ const PROJECTS = [
     tags: ["Python","MediaPipe Hands","OpenCV","Gesture Recognition","Computer Vision","CPU-only"],
   },
   {
-    typeColor: "#fbbf24", type: "Full-Stack · NeuBrutalism · Live",
+    typeColor: "#fbbf24", type: "📰 Full-Stack · NeuBrutalism · Live",
     title: "NewsMania — Interactive News Dashboard",
     desc: "A modern interactive news dashboard where users discover, verify, and share global news in real time. Features a gamification system — earn points for verifying (+10) and sharing (+5) articles, with a reward system at 50 points.",
     metrics: [["Live","Deployed"],["Gamified","UX"],["Real-Time","News API"]],
@@ -57,21 +57,21 @@ const PROJECTS = [
     demo: "https://news-mania-eight.vercel.app/",
   },
   {
-    typeColor: "#34d399", type: "Ongoing · Backend Systems",
+    typeColor: "#34d399", type: "🔄 Ongoing · Backend Systems",
     title: "Real-Time Shipment Tracker",
     desc: "Intelligent shipment tracking system with predictive delivery insights, real-time status updates, and event-driven backend architecture.",
     arch: ["Shipment APIs","Event Bus","Prediction Engine","Client"],
     tags: ["Python","Kafka","WebSocket","ML"],
   },
   {
-    typeColor: "#a78bfa", type: "AI / Multi-Agent · 🔄 Ongoing",
+    typeColor: "#a78bfa", type: "🤖 AI / Multi-Agent · 🔄 Ongoing",
     title: "Agentic AI System — CrewAI",
     desc: "Multi-agent AI orchestration system where autonomous agents collaborate to complete complex tasks through dynamic workflow coordination.",
     arch: ["Task Input","CrewAI Orchestrator","Agent Network","Output"],
     tags: ["Python","CrewAI","LLM APIs","REST"],
   },
   {
-    typeColor: "#38bdf8", type: "IoT · Full-Stack · Live",
+    typeColor: "#38bdf8", type: "🌐 IoT · Full-Stack · Live",
     title: "IoT Smart Dashboard",
     desc: "Real-time IoT monitoring system connecting humidity, light, and ultrasonic sensors (Arduino/ESP32) to a live Flask analytics dashboard.",
     disclaimer: "⚠️ Live sensor data is only visible when an Arduino/ESP32 board is physically connected and transmitting. The demo shows UI and layout without hardware.",
@@ -79,7 +79,7 @@ const PROJECTS = [
     demo: "https://genuino-uno.vercel.app/",
   },
   {
-    typeColor: "#a78bfa", type: "Real-Time · Networking",
+    typeColor: "#a78bfa", type: "🎤 Real-Time · Networking",
     title: "Voice Chat System — RTP",
     desc: "Low-latency real-time voice communication system built in Python using PyAudio and RTP protocols, demonstrating deep networking fundamentals.",
     tags: ["Python","PyAudio","RTP","Socket Programming"],
@@ -93,7 +93,7 @@ const PROJECTS = [
     demo: "https://rubiks-cube-solver-delta.vercel.app/",
   },
   {
-    typeColor: "#34d399", type: "Computer Vision · ML",
+    typeColor: "#34d399", type: "👁 Computer Vision · ML",
     title: "Emotion Detection System",
     desc: "Real-time emotion classification system using computer vision and a machine learning pipeline to detect and categorize human facial expressions.",
     tags: ["Python","OpenCV","TensorFlow","CNN"],
@@ -382,7 +382,7 @@ section{position:relative;z-index:1;scroll-margin-top:72px}
 .cdot.done{background:var(--emerald)}
 #contact{padding:5rem 0}
 .contact-inner{max-width:700px;margin:0 auto;text-align:center}
-.cc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2.5rem;margin-top:2.5rem}
+.cc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;margin-top:2.5rem}
 .cc{background:var(--card);border:1px solid var(--b2);border-radius:var(--r);padding:1.4rem 1rem;text-align:center;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:.5rem;transition:all .3s}
 .cc:hover{border-color:var(--border);box-shadow:0 0 30px rgba(56,189,248,.08);transform:translateY(-3px)}
 .cc-icon{display:flex;align-items:center;justify-content:center;width:46px;height:46px;background:var(--cdim);border-radius:10px;border:1px solid rgba(56,189,248,0.2);color:var(--cyan)}
@@ -527,7 +527,7 @@ function Nav({ slim }) {
           <span className={open?"hbar hbar-mid open":"hbar hbar-mid"}/>
           <span className={open?"hbar hbar-bot open":"hbar hbar-bot"}/>
         </button>
-        <button className="nav-contact" onClick={(e)=>go("contact",e)}>Contact Me →</button>
+        <button className="nav-contact" onClick={(e)=>go("contact",e)}>Let's Connect →</button>
       </nav>
       <div className={open?"mob-drawer open":"mob-drawer"}>
         <div className="mob-links">{links.map(([id,label])=><a key={id} href={`#${id}`} onClick={(e)=>handleNav(id,e)} className="mob-link">{label}</a>)}</div>
@@ -543,13 +543,12 @@ function Hero() {
       <div className="ctr" style={{width:"100%"}}>
         <div className="hero-inner" style={{alignItems:"center"}}>
 
-          
+          {/* LEFT col — badge, name, desc, buttons, stack, stats */}
           <div className="fade">
-            <div className="hero-badge"><span className="bdot"/>Software Engineer · AI Builder · CS 2026</div>
             <h1 className="hero-name">Sneha <span className="hl">Attu.</span></h1>
-            <p className="hero-role">Software Engineer · AI Builder · Project Coordinator</p>
+            <p className="hero-role">// Software Engineer · AI Builder · Project Coordinator</p>
 
-            
+            {/* Photo — mobile only, shown right after role */}
             <div className="hero-photo-mob">
               <div style={{position:"relative",width:"160px",height:"160px",margin:"1.5rem auto"}}>
                 <div style={{position:"absolute",inset:"-3px",borderRadius:"50%",background:"linear-gradient(135deg,var(--cyan),var(--violet))",zIndex:0}}/>
@@ -561,7 +560,7 @@ function Hero() {
             <p className="hero-desc">Building scalable AI platforms, real-time distributed systems, and data-driven products. From event-driven backends processing <strong style={{color:"var(--cyan)"}}>1000+ events/sec</strong> to intelligent multi-agent AI pipelines — engineering things that perform at scale.</p>
             <div className="hero-btns">
               <button className="btn-p" onClick={(e)=>go("projects",e)}>View Projects</button>
-              <button className="btn-s" onClick={(e)=>go("about",e)}>About Me</button>
+              <a className="btn-s" href="https://www.linkedin.com/in/sneha-attu/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
               <a className="btn-s" href="https://github.com/sneha-attu" target="_blank" rel="noreferrer">GitHub ↗</a>
             </div>
             <div className="stack-lbl">Core Stack</div>
@@ -578,7 +577,7 @@ function Hero() {
                 </div>
               ))}
             </div>
-            
+            {/* Metrics — mobile only, shown below stats bar */}
             <div className="hero-metrics-mobile">
               {METRICS.slice(0,2).map(m=>(
                 <div key={m.tag} className="mc" style={{marginTop:".8rem"}}>
@@ -590,7 +589,7 @@ function Hero() {
             </div>
           </div>
 
-          
+          {/* RIGHT col — photo + metrics (desktop only) */}
           <div className="fade hero-right-col" style={{transitionDelay:".2s"}}>
             <div style={{position:"relative",width:"260px",height:"260px",flexShrink:0}}>
               <div style={{position:"absolute",inset:"-3px",borderRadius:"50%",background:"linear-gradient(135deg,var(--cyan),var(--violet))",zIndex:0}}/>
@@ -627,7 +626,7 @@ function About() {
             <p className="ap">My work spans <strong>event-driven backend systems, Agile/Scrum delivery, product analytics with PostHog & Google Ads</strong>, multi-agent AI workflows, and enterprise platform coordination.</p>
             <p className="ap">I thrive at the intersection of <strong>engineering and strategy</strong> — translating complex technical requirements into production-ready solutions while keeping business impact at the center.</p>
             <div className="int-box">
-              <div className="int-lbl">Interests & Curiosities</div>
+              <div className="int-lbl">// Interests & Curiosities</div>
               <div className="int-tags">
                 {["🤖 Agentic AI Systems","📡 Distributed Architectures","⚡ Real-Time Engineering","📊 Product Analytics","🌱 Open Source","📝 Technical Writing","🌍 AI for Social Good","🧠 System Design"].map(t=><span key={t} className="itag">{t}</span>)}
               </div>
@@ -635,13 +634,13 @@ function About() {
           </div>
           <div>
             <div className="icard">
-              <div className="ict">Quick Info</div>
+              <div className="ict">// Quick Info</div>
               {[["🎓","KLS GIT, Belgaum","— B.E. Computer Science, 2026"],["📍","Bengaluru","Karnataka, India"],["🏢","Currently at","Ecombuddha.ai — Founder's Office"],["🔭","Building:","GestiCalc · Gesture Calculator"],["🌐","LinkedIn","linkedin.com/in/sneha-attu"]].map(([ico,b,r])=>(
                 <div key={b} className="icr"><span className="ico">{ico}</span><div className="icv"><strong>{b}</strong> {r}</div></div>
               ))}
             </div>
             <div className="icard">
-              <div className="ict">Currently Working With</div>
+              <div className="ict">// Currently Working With</div>
               <div className="pill-row">
                 {["Kafka","Redis","AWS"].map(t=><span key={t} className="pill pc">{t}</span>)}
                 {["PostHog","Google Ads","JIRA"].map(t=><span key={t} className="pill pv">{t}</span>)}
@@ -868,7 +867,7 @@ function ContactForm() {
   const disabled=!form.name.trim()||!form.email.trim()||!form.message.trim()||status==="sending";
   return (
     <div style={{width:"100%",marginTop:"2.5rem",background:"var(--card)",border:"1px solid var(--b2)",borderRadius:"var(--r)",padding:"2rem",textAlign:"left"}}>
-      <div style={{fontFamily:"var(--mono)",fontSize:".7rem",color:"var(--cyan)",letterSpacing:".1em",textTransform:"uppercase",marginBottom:"1.4rem"}}>Send Me a Message</div>
+      <div style={{fontFamily:"var(--mono)",fontSize:".7rem",color:"var(--cyan)",letterSpacing:".1em",textTransform:"uppercase",marginBottom:"1.4rem"}}>// Send Me a Message</div>
       {status==="success"?(
         <div style={{textAlign:"center",padding:"2rem 1rem"}}>
           <div style={{fontSize:"2.5rem",marginBottom:"1rem"}}>✅</div>
@@ -886,7 +885,7 @@ function ContactForm() {
           <div style={{marginBottom:"1.4rem"}}><label style={lStyle}>Message *</label><textarea name="message" value={form.message} onChange={handleChange} placeholder="Hi Sneha, I'd love to talk about..." rows={5} style={{...iStyle,resize:"vertical",lineHeight:"1.6"}} onFocus={focus} onBlur={blur}/></div>
           {status==="error"&&<p style={{fontFamily:"var(--mono)",fontSize:".75rem",color:"#f87171",marginBottom:"1rem"}}>// Something went wrong — please try again.</p>}
           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:"1rem"}}>
-            <span style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)"}}>I reply within 24 hours</span>
+            <span style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)"}}>// Message arrives directly in my inbox</span>
             <button className="btn-p" onClick={handleSend} disabled={disabled} style={{fontSize:".9rem",padding:".75rem 2rem",opacity:disabled?0.5:1,cursor:disabled?"not-allowed":"pointer"}}>
               {status==="sending"?"Sending…":"Send Message →"}
             </button>
@@ -910,6 +909,10 @@ function Contact() {
               <span className="cc-icon"><svg width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></span>
               <span className="cc-lbl">Email</span><span className="cc-val">snehaattu9408@gmail.com</span>
             </a>
+            <a href="tel:+918867559408" className="cc">
+              <span className="cc-icon"><svg width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+              <span className="cc-lbl">Phone</span><span className="cc-val">+918867559408</span>
+            </a>
             <a href="https://www.linkedin.com/in/sneha-attu/" target="_blank" rel="noreferrer" className="cc">
               <span className="cc-icon"><svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
               <span className="cc-lbl">LinkedIn</span><span className="cc-val">linkedin.com/in/sneha-attu</span>
@@ -920,7 +923,7 @@ function Contact() {
             </a>
           </div>
           <ContactForm/>
-          <div className="ctag">Let's build something meaningful together</div>
+          <div className="ctag">// Let's build something meaningful together 🚀</div>
         </div>
       </div>
     </section>
@@ -933,7 +936,7 @@ function Footer() {
       <div className="ctr">
         <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:"1rem"}}>
           <div style={{fontFamily:"var(--mono)",fontSize:".72rem",color:"var(--muted2)"}}>
-            crafted with <span style={{color:"#f87171"}}>♥</span> by <span style={{color:"var(--cyan)",fontWeight:600}}>Sneha Attu</span> · turning ideas into impact ✦ © 2026
+            crafted with <span style={{color:"#f87171"}}>♥</span> by <span style={{color:"var(--cyan)",fontWeight:600}}>Sneha Attu</span> · turning ideas into impact, one commit at a time ✦ © 2026
           </div>
           <div style={{display:"flex",gap:"1.5rem"}}>
             <a href="#hero" onClick={(e)=>go("hero",e)} style={{fontFamily:"var(--mono)",fontSize:".68rem",color:"var(--muted)",textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.target.style.color="var(--cyan)"} onMouseLeave={e=>e.target.style.color="var(--muted)"}>↑ Top</a>
