@@ -636,7 +636,7 @@ function About() {
           <div>
             <div className="icard">
               <div className="ict">Quick Info</div>
-              {[["◎","KLS GIT, Belgaum","— B.E. Computer Science, 2026"],["◍","Bengaluru","Karnataka, India"],["◈","Currently at","Ecombuddha.ai — Founder's Office"],["◉","Building:","GestiCalc · Gesture Calculator"],["→","LinkedIn","linkedin.com/in/sneha-attu"]].map(([ico,b,r])=>(
+              {[["◎","KLS GIT, Belgaum","— B.E. Computer Science, 2026"],["◍","Bengaluru","Karnataka, India"],["◈","Currently at","Ecombuddha.ai — Founder's Office"],["◉","Building:","Agents(crew ai"],["→","LinkedIn","linkedin.com/in/sneha-attu"]].map(([ico,b,r])=>(
                 <div key={b} className="icr"><span className="ico">{ico}</span><div className="icv"><strong>{b}</strong> {r}</div></div>
               ))}
             </div>
