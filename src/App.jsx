@@ -21,7 +21,7 @@ const EXPERIENCE = [
   {
     role: "Founder's Office Growth Intern",
     company: "Ecombuddha.ai — Bengaluru, India",
-    period: "Jan 2026 – Present",
+    period: "Jan 2026 – April 2026",
     points: [],
     tags: ["PostHog","Google Ads","Agile/Scrum","AI Products","Stakeholder Management"],
   },
