@@ -597,9 +597,9 @@ function Hero() {
             </div>
             <div className="stack-lbl">Core Stack</div>
             <div className="pill-row">
-              {["Python","Kafka","AWS","PostgreSQL","Docker"].map(t=><span key={t} className="pill pc">{t}</span>)}
+              {["Python","Kafka","AWS","SQL","Excel"].map(t=><span key={t} className="pill pc">{t}</span>)}
               {["PostHog","Google Ads","JIRA"].map(t=><span key={t} className="pill pv">{t}</span>)}
-              {["React","Node.js"].map(t=><span key={t} className="pill pe">{t}</span>)}
+              {["React"].map(t=><span key={t} className="pill pe">{t}</span>)}
             </div>
             <div style={{display:"flex",gap:"2rem",marginTop:"2rem",paddingTop:"1.5rem",borderTop:"1px solid var(--b2)"}}>
               {[["2+","Years Building"],["4+","Hackathons"],["99.9%","SLA Uptime"]].map(([val,lbl])=>(
