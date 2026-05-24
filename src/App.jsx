@@ -19,12 +19,22 @@ const SKILLS = [
 
 const EXPERIENCE = [
   {
-    role: "Founder's Office Growth Intern",
+    role: "Full Stack Developer Intern",
+
     company: "Ecombuddha.ai — Bengaluru, India",
-    period: "Jan 2026 – April 2026",
-    points: [],
-    tags: ["PostHog","Google Ads","Agile/Scrum","AI Products","Stakeholder Management"],
-  },
+
+    period: "Jan 2026 – 19 May 2026",
+
+    points: [
+      
+    ],
+
+    tags: [
+      "Full Stack Development",
+      "AI Workflows",
+      "Analytics"
+    ],
+},
   {
     role: "Software Development Intern",
     company: "Theta Dynamics — Remote / India",
@@ -46,6 +56,28 @@ const PROJECTS = [
     arch: ["Webcam Input","MediaPipe Hands","Gesture Manager","Expression Evaluator","Overlay UI & Analytics"],
     tags: ["Python","MediaPipe Hands","OpenCV","Gesture Recognition","Computer Vision","CPU-only"],
   },
+
+{
+    type: "Power BI · Data Analytics · Visualization",
+
+    title: "Road Safety Analytics Dashboard",
+
+    desc:
+      "Developed an interactive Power BI dashboard to analyze road accident patterns, casualty trends, vehicle involvement, and regional safety insights. Implemented dynamic filtering, KPI tracking, and data-driven visualizations to identify accident hotspots and support analytical decision-making.",
+
+    tags: [
+      "Power BI",
+      "Data Analytics",
+      "Dashboarding",
+      "Data Visualization",
+      "KPI Analysis",
+      "Excel",
+      "SQL"
+    ],
+
+    github:
+      "https://github.com/sneha-attu/Road-Safety-Analytics/blob/main/Road%20Safety.pbix"
+},
   {
     typeColor: "#fbbf24", type: "Full-Stack · NeuBrutalism · Live",
     title: "NewsMania — Interactive News Dashboard",
@@ -545,9 +577,8 @@ function Hero() {
 
           {/* LEFT col — badge, name, desc, buttons, stack, stats */}
           <div className="fade">
-            <div className="hero-badge"><span className="bdot"/>Software Engineer · AI Builder · CS 2026</div>
             <h1 className="hero-name">Sneha <span className="hl">Attu.</span></h1>
-            <p className="hero-role">Software Engineer · AI Builder · Project Coordinator</p>
+            <p className="hero-role">Software Engineer · AI Builder · Data Analyst</p>
 
             {/* Photo — mobile only, shown right after role */}
             <div className="hero-photo-mob">
@@ -636,12 +667,32 @@ function About() {
           <div>
             <div className="icard">
               <div className="ict">Quick Info</div>
-              {[["◎","KLS GIT, Belgaum","— B.E. Computer Science, 2026"],["◍","Bengaluru","Karnataka, India"],["◈","Currently at","Ecombuddha.ai — Founder's Office"],["◉","Building:","Agents"],["→","LinkedIn","linkedin.com/in/sneha-attu"]].map(([ico,b,r])=>(
-                <div key={b} className="icr"><span className="ico">{ico}</span><div className="icv"><strong>{b}</strong> {r}</div></div>
-              ))}
+
+{[
+ ["◎","KLS GIT, Belgaum","— B.E. Computer Science, 2026"],
+
+ ["◍","Karnataka, India"],
+
+ ["◈","Software Developer Intern","Theta Dynamics"],
+
+ ["◆","Full Stack Developer Intern","Ecombuddha.ai (Startup)"],
+
+].map(([ico,b,r]) => (
+
+  <div key={b} className="icr">
+
+    <span className="ico">{ico}</span>
+
+    <div className="icv">
+      <strong>{b}</strong> {r}
+    </div>
+
+  </div>
+
+))}
             </div>
             <div className="icard">
-              <div className="ict">Currently Working With</div>
+              <div className="ict">Worked</div>
               <div className="pill-row">
                 {["Kafka","Redis","AWS"].map(t=><span key={t} className="pill pc">{t}</span>)}
                 {["PostHog","Google Ads","JIRA"].map(t=><span key={t} className="pill pv">{t}</span>)}
